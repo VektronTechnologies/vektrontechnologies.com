@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Vektron Technologies, LLC</title>
+<meta name="description" content="Privacy Policy for Vektron Technologies, LLC. Learn how we collect, use, and protect your personal information across our software platform and services.">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://vektrontechnologies.com/privacy.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Privacy Policy — Vektron Technologies, LLC">
+<meta property="og:description" content="Privacy Policy describing how Vektron Technologies collects, uses, and protects your personal information.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vektrontechnologies.com/privacy.html">
+<meta property="og:site_name" content="VEKTRON Technologies">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D0D14'/%3E%3Cpath d='M6 8l10 16L26 8' fill='none' stroke='%237B2FBE' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<style>
+  /* ── Legal Page Layout ── */
+  .legal-page {
+    padding-top: calc(var(--space-16) + 60px);
+    padding-bottom: var(--space-24);
+    background: var(--color-bg);
+    min-height: 100vh;
+  }
+
+  .legal-container {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* Page header block */
+  .legal-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .legal-header .section-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    line-height: 1.1;
+  }
+
+  .legal-meta {
+    font-size: var(--text-xs);
+    color: var(--color-text-faint);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Section headings */
+  .legal-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary-glow);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-divider);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .legal-section h2::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .legal-section p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-4);
+    max-width: none;
+  }
+
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section ul,
+  .legal-section ol {
+    margin: var(--space-3) 0 var(--space-4) var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: 1.8;
+  }
+
+  .legal-section li {
+    margin-bottom: var(--space-2);
+    max-width: none;
+    text-wrap: pretty;
+  }
+
+  .legal-section strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .legal-section a {
+    color: var(--color-primary-glow);
+    text-decoration: none;
+    transition: color var(--transition-interactive);
+  }
+
+  .legal-section a:hover {
+    color: var(--color-cta);
+  }
+
+  /* Contact block at bottom */
+  .legal-contact-block {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .legal-contact-block h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary-glow);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .legal-contact-block h2::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .legal-contact-block p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: none;
+  }
+
+  .legal-contact-block a {
+    color: var(--color-primary-glow);
+    text-decoration: none;
+    transition: color var(--transition-interactive);
+  }
+
+  .legal-contact-block a:hover {
+    color: var(--color-cta);
+  }
+
+  /* Footer links row */
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .footer-links a {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-interactive);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary-glow);
+  }
+
+  /* Simplified header nav for legal pages */
+  .legal-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .legal-nav-back {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: color var(--transition-interactive);
+  }
+
+  .legal-nav-back:hover {
+    color: var(--color-primary-glow);
+  }
+
+  .legal-nav-back svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Data category tags */
+  .data-category {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary-glow);
+    background: rgba(123, 47, 190, 0.12);
+    border: 1px solid rgba(123, 47, 190, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+    margin-right: var(--space-2);
+    margin-bottom: var(--space-1);
+  }
+</style>
+</head>
+<body>
+
+  <!-- ========== HEADER (simplified) ========== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="./index.html" class="header-logo" aria-label="VEKTRON Technologies — Home">
+        <img src="./assets/vektron-technologies-logo.png" alt="VEKTRON Technologies Logo" width="144" height="36">
+        <span class="header-logo-text" aria-hidden="true">VEKTRON</span>
+      </a>
+
+      <nav class="legal-nav" aria-label="Legal page navigation">
+        <a href="./index.html" class="legal-nav-back">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 2L4 7l5 5"/>
+          </svg>
+          Back to Home
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ========== LEGAL CONTENT ========== -->
+  <main class="legal-page" id="main-content">
+    <div class="legal-container">
+
+      <header class="legal-header">
+        <div class="section-label" aria-hidden="true">Legal</div>
+        <h1 class="legal-page-title">Privacy Policy</h1>
+        <p class="legal-meta">Last Updated: April 2, 2026</p>
+      </header>
+
+      <section class="legal-section">
+        <p>
+          Vektron Technologies, LLC ("Vektron," "we," "us," or "our") is committed to protecting the privacy of our users. This Privacy Policy explains what information we collect, how we use it, with whom we share it, and your rights regarding your data. This policy applies to all users of our website at <strong>vektrontechnologies.com</strong>, our V-Tuning platform, and any other services we provide.
+        </p>
+        <p>
+          By using our services, you acknowledge that you have read and understood this Privacy Policy. If you disagree with our practices, please discontinue use of our services and contact us to request data deletion.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>1. Information We Collect</h2>
+        <p>We collect information in the following categories when you use our services:</p>
+
+        <p><strong>Account &amp; Identity Information</strong></p>
+        <ul>
+          <li>Full name and display name</li>
+          <li>Email address</li>
+          <li>Business name and role (for enterprise accounts)</li>
+          <li>Password (stored in hashed, non-reversible form — we never store plaintext passwords)</li>
+          <li>Account preferences and settings</li>
+        </ul>
+
+        <p><strong>Payment Information</strong></p>
+        <ul>
+          <li>Payment card details (credit/debit card number, expiration date, CVV) — collected and processed exclusively by <strong>Stripe, Inc.</strong>, our payment processor. Vektron never stores full card numbers on our servers.</li>
+          <li>Billing address and postal code</li>
+          <li>Transaction history and subscription status</li>
+        </ul>
+
+        <p><strong>Usage &amp; Platform Data</strong></p>
+        <ul>
+          <li>Log data: IP address, browser type, operating system, pages visited, referral URLs, timestamps</li>
+          <li>V-Tuning platform activity: features accessed, calibration sessions, file uploads and exports</li>
+          <li>Device information: device type, screen resolution, hardware identifiers</li>
+          <li>Crash reports and error logs for platform diagnostics</li>
+        </ul>
+
+        <p><strong>Communications</strong></p>
+        <ul>
+          <li>Emails and messages you send to us for support, consulting inquiries, or general contact</li>
+          <li>Records of support interactions</li>
+        </ul>
+
+        <p><strong>Information Provided Voluntarily</strong></p>
+        <ul>
+          <li>Survey responses and feedback</li>
+          <li>Information provided during consulting engagements or project scoping</li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the information we collect for the following purposes:</p>
+        <ul>
+          <li><strong>Service Delivery:</strong> Creating and managing your account, providing access to the V-Tuning platform, processing subscription payments, and fulfilling hardware and consulting orders.</li>
+          <li><strong>Communication:</strong> Sending transactional emails (receipts, subscription confirmations, password resets), service announcements, and responding to support requests.</li>
+          <li><strong>Platform Improvement:</strong> Analyzing usage patterns to improve features, fix bugs, and enhance user experience. We may use aggregated, de-identified data for this purpose.</li>
+          <li><strong>Security:</strong> Detecting and preventing fraud, unauthorized access, and abuse of our platform.</li>
+          <li><strong>Legal Compliance:</strong> Meeting our obligations under applicable laws, responding to lawful requests from government authorities, and enforcing our Terms of Service.</li>
+          <li><strong>Marketing (with consent):</strong> Sending product updates, newsletters, or promotional content. You may opt out of marketing emails at any time via the unsubscribe link in each email or by contacting us directly.</li>
+        </ul>
+        <p>
+          We do not sell your personal information to third parties for their own marketing purposes.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>3. Third-Party Services &amp; Data Sharing</h2>
+        <p>
+          We work with trusted third-party services to operate our platform. We share only the minimum information necessary for each service to function.
+        </p>
+        <ul>
+          <li>
+            <strong>Stripe, Inc. (Payment Processing):</strong> All payment transactions are processed by Stripe. When you provide payment details, that information is transmitted directly to Stripe's secure servers and is governed by <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe's Privacy Policy</a>. Vektron receives only non-sensitive payment metadata (last four digits, card type, expiration month/year, and transaction status).
+          </li>
+          <li>
+            <strong>Hosting &amp; Infrastructure:</strong> Our platform is hosted on cloud infrastructure providers who process data on our behalf under data processing agreements. These providers are contractually bound to protect your data.
+          </li>
+          <li>
+            <strong>Email Service Providers:</strong> We use email service providers to send transactional and marketing emails. These providers process your email address and message content solely on our behalf.
+          </li>
+          <li>
+            <strong>Analytics:</strong> We may use analytics tools to understand aggregate usage patterns. Where possible, we configure these tools to anonymize or pseudonymize data.
+          </li>
+        </ul>
+        <p>
+          We may also disclose your information when required by law, in response to a valid legal process, or when necessary to protect the rights, property, or safety of Vektron Technologies, our users, or the public.
+        </p>
+        <p>
+          In the event of a merger, acquisition, or sale of assets, user information may be transferred as part of that transaction. We will notify you via email or a prominent notice on our website before your information becomes subject to a different privacy policy.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>4. Cookies &amp; Tracking Technologies</h2>
+        <p>
+          We use cookies and similar tracking technologies on our website and platform. Cookies are small data files stored on your device that help us provide and improve our services.
+        </p>
+        <p>We use the following types of cookies:</p>
+        <ul>
+          <li><strong>Essential Cookies:</strong> Required for core functionality such as authentication, session management, and security. These cannot be disabled without impairing your ability to use the platform.</li>
+          <li><strong>Functional Cookies:</strong> Remember your preferences such as language selection, display settings, and account customizations.</li>
+          <li><strong>Analytics Cookies:</strong> Help us understand how users navigate our site and platform, allowing us to identify and improve areas of poor performance.</li>
+          <li><strong>Payment Cookies:</strong> Set by Stripe to enable secure payment processing and fraud prevention.</li>
+        </ul>
+        <p>
+          You can control cookie behavior through your browser settings. Disabling essential cookies may prevent certain features from working correctly. We honor browser-level "Do Not Track" signals where technically feasible.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>5. Data Security</h2>
+        <p>
+          We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include:
+        </p>
+        <ul>
+          <li>Encryption of data in transit using TLS/HTTPS</li>
+          <li>Encryption of sensitive data at rest</li>
+          <li>Password hashing using secure, modern algorithms (e.g., bcrypt)</li>
+          <li>Access controls limiting employee access to personal data on a need-to-know basis</li>
+          <li>Regular security reviews of our infrastructure and application code</li>
+        </ul>
+        <p>
+          No method of electronic transmission or storage is 100% secure. While we take data protection seriously and apply reasonable safeguards, we cannot guarantee absolute security. In the event of a data breach that affects your personal information, we will notify you in accordance with applicable law.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>6. Data Retention</h2>
+        <p>
+          We retain your personal information for as long as your account is active or as needed to provide services, comply with legal obligations, resolve disputes, and enforce our agreements. Specifically:
+        </p>
+        <ul>
+          <li>Account data is retained for the duration of your subscription plus a reasonable period thereafter.</li>
+          <li>Financial transaction records are retained for a minimum of seven (7) years as required for tax and accounting compliance.</li>
+          <li>Support communications are retained for up to three (3) years.</li>
+          <li>Log and analytics data is typically retained in identifiable form for up to twelve (12) months, after which it may be aggregated or de-identified.</li>
+        </ul>
+        <p>
+          When you request account deletion, we will delete or anonymize your personal information within a reasonable timeframe, subject to retention requirements for financial records and legal compliance.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>7. Your Privacy Rights</h2>
+        <p>
+          Depending on your location, you may have certain rights regarding your personal information. We support the following rights for all users, regardless of jurisdiction:
+        </p>
+        <ul>
+          <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
+          <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information.</li>
+          <li><strong>Deletion:</strong> Request deletion of your personal information, subject to legal retention obligations.</li>
+          <li><strong>Portability:</strong> Request your account data in a commonly used, machine-readable format.</li>
+          <li><strong>Opt-Out of Marketing:</strong> Unsubscribe from marketing emails at any time using the link in each email or by contacting us.</li>
+          <li><strong>Restriction:</strong> Request that we limit how we use your data in certain circumstances.</li>
+        </ul>
+        <p>
+          We are aware of and committed to compliance with applicable U.S. state privacy laws, including where relevant. Users in states with specific consumer privacy rights (such as California's CCPA) may have additional rights under those frameworks. To exercise any of these rights, contact us at <a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a>. We will respond within 30 days.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>8. Children's Privacy</h2>
+        <p>
+          Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have collected personal information from a minor, we will promptly delete it. If you believe we may have inadvertently collected information from a child, please contact us immediately.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>9. International Data Transfers</h2>
+        <p>
+          Vektron Technologies is based in the United States, and your information is processed and stored in the United States. If you access our services from outside the U.S., your data may be transferred to and processed in the U.S., where privacy laws may differ from those in your country. By using our services, you consent to this transfer and processing.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>10. Changes to This Policy</h2>
+        <p>
+          We may update this Privacy Policy periodically to reflect changes in our practices, technology, or legal requirements. We will notify you of material changes by updating the "Last Updated" date at the top of this page and, where appropriate, by sending you an email notification. We encourage you to review this policy periodically.
+        </p>
+      </section>
+
+      <div class="legal-contact-block">
+        <h2>Privacy Inquiries</h2>
+        <p>
+          For questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact our privacy team:<br><br>
+          <strong>Vektron Technologies, LLC</strong><br>
+          Fort Mill, South Carolina<br>
+          Email: <a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a><br>
+          Website: <a href="https://vektrontechnologies.com">vektrontechnologies.com</a><br><br>
+          We will acknowledge your inquiry within 5 business days and aim to fully respond within 30 days.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="./assets/vektron-technologies-logo.png" alt="VEKTRON Technologies" width="120" height="40" loading="lazy">
+          <span class="footer-brand-text">VEKTRON</span>
+        </div>
+        <div class="footer-contact">
+          <p>Vektron Technologies, LLC</p>
+          <p>Fort Mill, SC &bull; Est. 2026</p>
+          <p><a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a></p>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-links">
+        <a href="./terms.html">Terms of Service</a>
+        <a href="./privacy.html" aria-current="page">Privacy Policy</a>
+        <a href="./refund.html">Refund Policy</a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">&copy; 2026 Vektron Technologies, LLC. All Rights Reserved.</div>
+        <div class="footer-classified">Precision at the Binary Level.</div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

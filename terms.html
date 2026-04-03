@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Vektron Technologies, LLC</title>
+<meta name="description" content="Terms of Service for Vektron Technologies, LLC. Governing the use of the V-Tuning software platform, hardware engineering services, and technical consulting.">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://vektrontechnologies.com/terms.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Terms of Service — Vektron Technologies, LLC">
+<meta property="og:description" content="Terms of Service governing use of V-Tuning SaaS platform, hardware services, and consulting provided by Vektron Technologies, LLC.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vektrontechnologies.com/terms.html">
+<meta property="og:site_name" content="VEKTRON Technologies">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D0D14'/%3E%3Cpath d='M6 8l10 16L26 8' fill='none' stroke='%237B2FBE' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<style>
+  /* ── Legal Page Layout ── */
+  .legal-page {
+    padding-top: calc(var(--space-16) + 60px); /* clear fixed header */
+    padding-bottom: var(--space-24);
+    background: var(--color-bg);
+    min-height: 100vh;
+  }
+
+  .legal-container {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* Page header block */
+  .legal-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .legal-header .section-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    line-height: 1.1;
+  }
+
+  .legal-meta {
+    font-size: var(--text-xs);
+    color: var(--color-text-faint);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Section headings */
+  .legal-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary-glow);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-divider);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .legal-section h2::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .legal-section p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-4);
+    max-width: none;
+  }
+
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section ul,
+  .legal-section ol {
+    margin: var(--space-3) 0 var(--space-4) var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: 1.8;
+  }
+
+  .legal-section li {
+    margin-bottom: var(--space-2);
+    max-width: none;
+    text-wrap: pretty;
+  }
+
+  .legal-section strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* Contact block at bottom */
+  .legal-contact-block {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .legal-contact-block h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary-glow);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .legal-contact-block h2::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .legal-contact-block p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: none;
+  }
+
+  .legal-contact-block a {
+    color: var(--color-primary-glow);
+    text-decoration: none;
+    transition: color var(--transition-interactive);
+  }
+
+  .legal-contact-block a:hover {
+    color: var(--color-cta);
+  }
+
+  /* Footer links row (not in style.css) */
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .footer-links a {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-interactive);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary-glow);
+  }
+
+  /* Simplified header nav for legal pages */
+  .legal-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .legal-nav-back {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: color var(--transition-interactive);
+  }
+
+  .legal-nav-back:hover {
+    color: var(--color-primary-glow);
+  }
+
+  .legal-nav-back svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ========== HEADER (simplified) ========== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="./index.html" class="header-logo" aria-label="VEKTRON Technologies — Home">
+        <img src="./assets/vektron-technologies-logo.png" alt="VEKTRON Technologies Logo" width="144" height="36">
+        <span class="header-logo-text" aria-hidden="true">VEKTRON</span>
+      </a>
+
+      <nav class="legal-nav" aria-label="Legal page navigation">
+        <a href="./index.html" class="legal-nav-back">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 2L4 7l5 5"/>
+          </svg>
+          Back to Home
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ========== LEGAL CONTENT ========== -->
+  <main class="legal-page" id="main-content">
+    <div class="legal-container">
+
+      <header class="legal-header">
+        <div class="section-label" aria-hidden="true">Legal</div>
+        <h1 class="legal-page-title">Terms of Service</h1>
+        <p class="legal-meta">Last Updated: April 2, 2026</p>
+      </header>
+
+      <section class="legal-section">
+        <p>
+          These Terms of Service ("Terms") govern your access to and use of the products, services, software, and website operated by <strong>Vektron Technologies, LLC</strong> ("Vektron," "we," "us," or "our"), a limited liability company organized under the laws of South Carolina and headquartered in Fort Mill, South Carolina.
+        </p>
+        <p>
+          By accessing our website at <strong>vektrontechnologies.com</strong>, creating an account, purchasing a subscription, or using any of our services, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree, you must not use our services.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          These Terms constitute a legally binding agreement between you ("User," "you," or "your") and Vektron Technologies, LLC. You must be at least 18 years of age and have the legal authority to enter into this agreement. If you are using our services on behalf of a business or organization, you represent and warrant that you have authority to bind that entity to these Terms.
+        </p>
+        <p>
+          We reserve the right to modify these Terms at any time. We will notify users of material changes via email or through a prominent notice on our website. Continued use of our services after changes become effective constitutes your acceptance of the updated Terms.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>2. Description of Services</h2>
+        <p>Vektron Technologies provides the following products and services:</p>
+        <ul>
+          <li><strong>V-Tuning Platform (SaaS):</strong> A subscription-based ECU calibration software platform with proprietary calibration tools, multi-language support, and built-in safety features. Available to individual tuners and enterprise clients via tiered subscription plans.</li>
+          <li><strong>Custom Hardware Engineering:</strong> Design, development, and fabrication of custom ECU hardware, retrofit kits, and automotive components. Provided on a project-by-project basis with terms defined in individual project agreements.</li>
+          <li><strong>Technical Consulting:</strong> Professional ECU diagnostics, calibration advisory, custom PC builds for automotive monitoring, and technical consulting services. Provided on an hourly or fixed-project rate basis.</li>
+          <li><strong>Training &amp; Certification Programs:</strong> Professional tuner certification courses, enterprise licensing packages, and educational workshops.</li>
+        </ul>
+        <p>
+          We reserve the right to modify, suspend, or discontinue any service at any time with reasonable notice to affected users.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>3. Account Registration &amp; Responsibilities</h2>
+        <p>
+          To access certain services — including the V-Tuning platform — you must create an account. When registering, you agree to:
+        </p>
+        <ul>
+          <li>Provide accurate, current, and complete information during registration.</li>
+          <li>Maintain the security of your account credentials and not share your login information with others.</li>
+          <li>Promptly notify us at <a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a> of any unauthorized account access or security breach.</li>
+          <li>Accept responsibility for all activity that occurs under your account.</li>
+          <li>Use the services only for lawful purposes and in compliance with all applicable laws and regulations.</li>
+        </ul>
+        <p>
+          We reserve the right to suspend or terminate accounts that violate these Terms, engage in fraudulent activity, or pose a security risk to our platform or other users.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>4. Subscription Billing &amp; Payment Terms</h2>
+        <p>
+          Access to the V-Tuning platform is provided on a subscription basis. By subscribing, you authorize Vektron Technologies to charge your payment method through <strong>Stripe</strong>, our third-party payment processor, on a recurring basis according to your chosen billing cycle (monthly or annual).
+        </p>
+        <ul>
+          <li><strong>Billing Cycle:</strong> Subscriptions are billed in advance at the start of each billing period. Your subscription will automatically renew unless you cancel before the renewal date.</li>
+          <li><strong>Cancellation:</strong> You may cancel your subscription at any time through your account settings or by contacting us. Cancellation takes effect at the end of the current billing period; you will retain access until that date.</li>
+          <li><strong>Price Changes:</strong> We may change subscription pricing with at least 30 days' advance notice. Continued use after the price change becomes effective constitutes acceptance of the new pricing.</li>
+          <li><strong>Failed Payments:</strong> If a payment fails, we may suspend your access to the platform until the outstanding balance is resolved. We will make reasonable attempts to notify you of payment failures.</li>
+          <li><strong>Taxes:</strong> Subscription fees do not include applicable sales taxes or other governmental charges, which may be added to your invoice based on your location.</li>
+        </ul>
+        <p>
+          For hardware engineering and consulting projects, payment terms will be specified in individual project agreements or invoices. We typically require a deposit for larger projects, with the balance due upon completion or per milestone schedule.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>5. Intellectual Property</h2>
+        <p>
+          All content, software, source code, algorithms, designs, trademarks, trade names, logos, and other intellectual property associated with Vektron Technologies and its products — including the V-Tuning platform, V-Power hardware designs, and all associated documentation — are the exclusive property of Vektron Technologies, LLC or its licensors.
+        </p>
+        <p>
+          Your subscription grants you a limited, non-exclusive, non-transferable, revocable license to access and use the V-Tuning platform for your own professional or business purposes. This license does not permit you to:
+        </p>
+        <ul>
+          <li>Copy, reverse engineer, decompile, disassemble, or attempt to derive source code from the software.</li>
+          <li>Sublicense, sell, rent, lease, or transfer your access rights to any third party.</li>
+          <li>Remove or alter any proprietary notices, labels, or markings.</li>
+          <li>Use our intellectual property to develop competing products or services.</li>
+          <li>Access the platform via automated means (bots, scrapers) except as expressly authorized by us.</li>
+        </ul>
+        <p>
+          You retain full ownership of any ECU calibration data, tuning files, or other content you create using our platform. By using our services, you grant us a limited license to process and store your data solely for the purpose of providing and improving our services.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>6. Acceptable Use</h2>
+        <p>You agree to use our services only for lawful purposes. You must not:</p>
+        <ul>
+          <li>Use the V-Tuning platform to create calibrations intended to circumvent emissions regulations, defeat safety systems, or render a vehicle non-compliant with applicable laws.</li>
+          <li>Use our services to infringe upon the intellectual property rights of any third party.</li>
+          <li>Attempt to gain unauthorized access to our systems, servers, or other users' accounts.</li>
+          <li>Upload or transmit malicious code, viruses, or any software intended to damage or disrupt our services.</li>
+          <li>Use our services in any manner that could damage, disable, overburden, or impair our infrastructure.</li>
+        </ul>
+        <p>
+          Vektron Technologies provides software tools for professional calibration work. Users are solely responsible for ensuring that any ECU modifications comply with applicable federal, state, and local laws — including environmental and emissions regulations — in the jurisdiction where the vehicle will be operated.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>7. Disclaimer of Warranties</h2>
+        <p>
+          Our services are provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, express or implied. To the fullest extent permitted by law, Vektron Technologies disclaims all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+        </p>
+        <p>
+          We do not warrant that our services will be uninterrupted, error-free, or free of harmful components. ECU calibration work carries inherent risks; we strongly recommend maintaining backups of all original ECU data before performing any modifications. Vektron Technologies is not responsible for engine damage, vehicle malfunction, or any other harm resulting from the use of calibrations created with our software.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>8. Limitation of Liability</h2>
+        <p>
+          To the maximum extent permitted by applicable law, Vektron Technologies, LLC and its officers, directors, employees, agents, and affiliates shall not be liable for any indirect, incidental, special, consequential, punitive, or exemplary damages — including but not limited to loss of profits, loss of data, vehicle damage, business interruption, or loss of goodwill — arising out of or related to your use of or inability to use our services.
+        </p>
+        <p>
+          In no event shall our total liability to you for all claims arising out of or related to these Terms or our services exceed the greater of: (a) the total amount paid by you to Vektron Technologies in the twelve (12) months preceding the claim, or (b) one hundred dollars ($100.00 USD).
+        </p>
+        <p>
+          Some jurisdictions do not allow the exclusion or limitation of certain damages, so the above limitations may not apply to you in full.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>9. Indemnification</h2>
+        <p>
+          You agree to defend, indemnify, and hold harmless Vektron Technologies, LLC and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses — including reasonable legal fees — arising out of or in any way connected with: (a) your access to or use of our services; (b) your violation of these Terms; (c) your violation of any applicable law or regulation; or (d) any ECU calibrations or modifications you create or deploy using our platform.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>10. Third-Party Services</h2>
+        <p>
+          Our platform integrates with third-party services to provide certain functionality. Payment processing is handled by <strong>Stripe, Inc.</strong>, and your use of payment features is subject to <a href="https://stripe.com/legal" target="_blank" rel="noopener noreferrer">Stripe's Terms of Service</a> and <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. We are not responsible for the practices or content of third-party services.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>11. Termination</h2>
+        <p>
+          Either party may terminate the service relationship at any time. You may terminate by canceling your subscription and discontinuing use of our services. We may terminate or suspend your access immediately and without notice if you breach these Terms or engage in conduct we determine to be harmful to other users or our platform.
+        </p>
+        <p>
+          Upon termination, your right to access and use our services ceases immediately. Sections of these Terms that by their nature should survive termination — including intellectual property, limitation of liability, indemnification, and governing law — will remain in effect.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>12. Governing Law &amp; Dispute Resolution</h2>
+        <p>
+          These Terms are governed by and construed in accordance with the laws of the <strong>State of South Carolina</strong>, without regard to its conflict of law principles. Any disputes arising out of or relating to these Terms or our services shall be subject to the exclusive jurisdiction of the state and federal courts located in York County, South Carolina, and you consent to personal jurisdiction in those courts.
+        </p>
+        <p>
+          Before initiating any formal legal proceedings, both parties agree to attempt to resolve disputes informally by contacting us at <a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a>. We will make a good-faith effort to resolve the dispute within 30 days.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>13. Entire Agreement &amp; Severability</h2>
+        <p>
+          These Terms, together with our Privacy Policy and Refund Policy, constitute the entire agreement between you and Vektron Technologies, LLC regarding your use of our services and supersede any prior agreements. If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will remain in full force and effect. Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.
+        </p>
+      </section>
+
+      <div class="legal-contact-block">
+        <h2>Contact Us</h2>
+        <p>
+          If you have questions about these Terms of Service, please contact us:<br><br>
+          <strong>Vektron Technologies, LLC</strong><br>
+          Fort Mill, South Carolina<br>
+          Email: <a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a><br>
+          Website: <a href="https://vektrontechnologies.com">vektrontechnologies.com</a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="./assets/vektron-technologies-logo.png" alt="VEKTRON Technologies" width="120" height="40" loading="lazy">
+          <span class="footer-brand-text">VEKTRON</span>
+        </div>
+        <div class="footer-contact">
+          <p>Vektron Technologies, LLC</p>
+          <p>Fort Mill, SC &bull; Est. 2026</p>
+          <p><a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a></p>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-links">
+        <a href="./terms.html" aria-current="page">Terms of Service</a>
+        <a href="./privacy.html">Privacy Policy</a>
+        <a href="./refund.html">Refund Policy</a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">&copy; 2026 Vektron Technologies, LLC. All Rights Reserved.</div>
+        <div class="footer-classified">Precision at the Binary Level.</div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -726,25 +726,18 @@
 }
 
 .contact-card-link {
-  display: inline-block;
+  display: block;
+  width: 100%;
   max-width: 100%;
   font-size: 0.8125rem;
   letter-spacing: -0.005em;
   color: var(--color-primary-glow);
   text-decoration: none;
   transition: color var(--transition-interactive);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: center;
   line-height: 1.5;
-}
-
-@media (max-width: 520px) {
-  .contact-card-link {
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .contact-card-link:hover {

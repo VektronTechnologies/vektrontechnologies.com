@@ -702,6 +702,10 @@
   padding: var(--space-6) var(--space-4);
   text-align: center;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .contact-card-icon {
@@ -729,6 +733,7 @@
   display: block;
   width: 100%;
   max-width: 100%;
+  margin: 0 auto;
   font-size: 0.8125rem;
   letter-spacing: -0.005em;
   color: var(--color-primary-glow);
@@ -738,6 +743,13 @@
   line-height: 1.5;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+/* Cloudflare email obfuscation wraps the link contents in a span — keep it centered */
+.contact-card-link .__cf_email__,
+.contact-card-link [data-cfemail] {
+  display: inline-block;
+  text-align: center;
 }
 
 .contact-card-link:hover {

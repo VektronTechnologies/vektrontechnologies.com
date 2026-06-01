@@ -1196,65 +1196,64 @@
   z-index: 2;
 }
 
-/* --- Cyberpunk glitch on V-Tuning mark --- */
+/* --- Cyberpunk glitch on V-Tuning mark ---
+   Single-layer technique: animate the real <img> with drop-shadow chromatic offsets
+   + clip-path slicing. Reliable across browsers, no pseudo-element background-image
+   hacks. Visible glitch fires for ~600ms every 5s, then returns to steady state. */
 .platform-card-mark--glitch {
   position: relative;
-  height: 120px;
-  width: 120px;
-  margin: 0 auto var(--space-6);
-  filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.6));
-}
-
-.platform-card-mark--glitch img,
-.platform-card-mark--glitch::before,
-.platform-card-mark--glitch::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('./assets/brand/v_mark.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--space-6);
 }
 
 .platform-card-mark--glitch img {
-  opacity: 0;
+  width: 120px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  animation: vMarkGlitch 5s infinite steps(1);
+  filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.55));
 }
 
-.platform-card-mark--glitch::before {
-  filter: drop-shadow(2px 0 0 #B388FF);
-  mix-blend-mode: screen;
-  animation: vGlitchA 4.2s infinite steps(1);
-}
-
-.platform-card-mark--glitch::after {
-  filter: drop-shadow(-2px 0 0 #7B2FBE);
-  mix-blend-mode: screen;
-  animation: vGlitchB 4.2s infinite steps(1);
-}
-
-@keyframes vGlitchA {
-  0%, 88%, 100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
-  90%           { transform: translate(2px, -1px); clip-path: inset(8% 0 62% 0); }
-  92%           { transform: translate(-3px, 1px); clip-path: inset(45% 0 18% 0); }
-  94%           { transform: translate(2px, 0); clip-path: inset(70% 0 8% 0); }
-  96%           { transform: translate(-1px, 1px); clip-path: inset(20% 0 50% 0); }
-}
-
-@keyframes vGlitchB {
-  0%, 88%, 100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
-  90%           { transform: translate(-2px, 1px); clip-path: inset(60% 0 22% 0); }
-  92%           { transform: translate(3px, -1px); clip-path: inset(15% 0 55% 0); }
-  94%           { transform: translate(-2px, 0); clip-path: inset(35% 0 35% 0); }
-  96%           { transform: translate(1px, -1px); clip-path: inset(78% 0 2% 0); }
+@keyframes vMarkGlitch {
+  /* Steady state across the full cycle except for the burst window */
+  0%, 86%, 92%, 100% {
+    transform: translate(0, 0);
+    filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.55));
+    clip-path: inset(0);
+  }
+  /* Glitch burst — runs 87%→91% (~250ms of every 5s cycle) */
+  87% {
+    transform: translate(3px, -1px);
+    filter: drop-shadow(3px 0 0 #B388FF) drop-shadow(-3px 0 0 #7B2FBE) drop-shadow(0 0 18px rgba(179, 136, 255, 0.6));
+    clip-path: inset(0);
+  }
+  88% {
+    transform: translate(-4px, 2px);
+    filter: drop-shadow(-3px 0 0 #B388FF) drop-shadow(3px 0 0 #7B2FBE);
+    clip-path: inset(12% 0 55% 0);
+  }
+  89% {
+    transform: translate(3px, -2px);
+    filter: drop-shadow(2px 0 0 #B388FF) drop-shadow(-2px 0 0 #7B2FBE);
+    clip-path: inset(50% 0 22% 0);
+  }
+  90% {
+    transform: translate(-3px, 1px);
+    filter: drop-shadow(-2px 0 0 #B388FF) drop-shadow(2px 0 0 #7B2FBE);
+    clip-path: inset(72% 0 6% 0);
+  }
+  91% {
+    transform: translate(2px, 0);
+    filter: drop-shadow(0 0 14px #B388FF) drop-shadow(0 0 6px #B388FF);
+    clip-path: inset(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .platform-card-mark--glitch::before,
-  .platform-card-mark--glitch::after { animation: none; }
-  .platform-card-mark--glitch img { opacity: 1; }
+  .platform-card-mark--glitch img { animation: none; }
 }
 
 /* :: separator chip used throughout the platform card and meta */
@@ -1455,4 +1454,123 @@
   color: var(--color-text-faint);
   max-width: 64ch;
   line-height: 1.6;
+}
+
+
+/* ========================================
+   TRUST STRIP — Social proof between Stats and Platform
+   ======================================== */
+
+.trust-strip {
+  position: relative;
+  padding: var(--space-10) 0;
+  background: linear-gradient(180deg, rgba(83, 38, 142, 0.04) 0%, transparent 100%);
+  border-top: 1px solid rgba(83, 38, 142, 0.18);
+  border-bottom: 1px solid rgba(83, 38, 142, 0.18);
+}
+
+.trust-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .trust-row { grid-template-columns: 1fr; gap: var(--space-5); }
+}
+
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(83, 38, 142, 0.15);
+  border: 1px solid rgba(83, 38, 142, 0.4);
+  color: var(--color-primary-glow);
+  flex-shrink: 0;
+}
+
+.trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.trust-text strong {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.trust-text span {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.trust-text .cyber-sep {
+  margin: 0 4px;
+  font-size: 0.9em;
+}
+
+
+/* ========================================
+   FOUNDER PULL QUOTE
+   ======================================== */
+
+.founder-quote {
+  position: relative;
+  margin: var(--space-6) 0 var(--space-8) 0;
+  padding: var(--space-6) var(--space-7);
+  background: linear-gradient(180deg, rgba(83, 38, 142, 0.10) 0%, rgba(83, 38, 142, 0.02) 100%);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+}
+
+.founder-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-primary-glow);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.founder-quote p {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 0 var(--space-4) 0;
+  letter-spacing: 0.005em;
+}
+
+.founder-quote cite {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary-glow);
 }

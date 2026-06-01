@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4096 1095" width="4096" height="1095">
+  <title>VEKTRON Corporate Signature — VEKTRON Violet / TECHNOLOGIES White</title>
+  <desc>Founder-directed variant (2026-06-01). V + EKTRON in Vektron Violet #53268E. TECHNOLOGIES in white. Transparent background.</desc>
+  <g transform="translate(80, 57) scale(0.980000)">
+    <path d="M 52.0,80 L 309.6,240 L 500,680 L 690.4,240 L 948.0,80 L 711.1,540 L 824.7,700 L 613.3,730 L 500,950 L 386.7,730 L 175.3,700 L 288.9,540 Z" fill="#53268E"/>
+  </g>
+  <text x="1120" y="680"
+        font-family="'Nyctos', 'Chakra Petch', 'Segoe UI', sans-serif"
+        font-size="540" font-weight="700" letter-spacing="-8"
+        fill="#53268E">EKTRON</text>
+  <text x="1120" y="920"
+        font-family="'Nyctos', 'Chakra Petch', 'Segoe UI', sans-serif"
+        font-size="132" font-weight="400" letter-spacing="42"
+        fill="#FFFFFF">TECHNOLOGIES</text>
+</svg>

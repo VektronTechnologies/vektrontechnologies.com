@@ -146,7 +146,10 @@
     founderPhoto.setAttribute("data-holo", "");
 
     if (!prefersReduced) {
-      var MAX_TILT = 14;
+      /* Tilt is gentle (7deg) so the founder's face geometry stays
+         correct — the heavy lifting comes from the sheen + glare, not
+         a warped portrait. Card still reads as 3D and "legendary". */
+      var MAX_TILT = 7;
       var holoRaf = null;
       var pendingTiltX = 0;
       var pendingTiltY = 0;
@@ -181,9 +184,10 @@
         pendingGlareY = (ny * 100).toFixed(1) + "%";
         /* Sheen scans diagonally with the cursor. */
         pendingShine = ((nx * 0.6 + (1 - ny) * 0.4) * 100).toFixed(1) + "%";
-        /* Intensity ramps as cursor moves off-center — the foil pops at the edges. */
+        /* Intensity ramps as cursor moves off-center — the foil pops at the edges.
+           Boosted vs. v1 so the holo carries the wow now that tilt is gentler. */
         var dist = Math.sqrt(Math.pow(nx - 0.5, 2) + Math.pow(ny - 0.5, 2));
-        pendingIntensity = 0.55 + Math.min(dist, 0.6) * 0.75;
+        pendingIntensity = 0.75 + Math.min(dist, 0.6) * 0.65;
 
         if (!holoRaf) {
           holoRaf = window.requestAnimationFrame(applyHolo);

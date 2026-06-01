@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="512" height="512">
-  <title>VEKTRON Favicon — Obsidian Plate, Vektron Violet V (squircle 14%)</title>
+  <title>VEKTRON Favicon — Obsidian Plate, Plasma Halo, Vektron Violet V (squircle 14%)</title>
+  <defs>
+    <radialGradient id="plasmaHalo" cx="50%" cy="50%" r="46%">
+      <stop offset="0%"  stop-color="#B388FF" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#B388FF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#B388FF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="plateClip">
+      <rect x="0" y="0" width="1000" height="1000" rx="140" ry="140"/>
+    </clipPath>
+  </defs>
   <rect x="0" y="0" width="1000" height="1000" rx="140" ry="140" fill="#0F0F12"/>
-  <g transform="translate(190,190) scale(0.62)">
+  <rect x="0" y="0" width="1000" height="1000" fill="url(#plasmaHalo)" clip-path="url(#plateClip)"/>
+  <g transform="translate(110,110) scale(0.78)">
     
   <title>VEKTRON V — Canonical Mark (v9 Silhouette Lock, Vektron Violet)</title>
   <desc>

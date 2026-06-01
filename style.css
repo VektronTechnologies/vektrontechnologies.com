@@ -348,7 +348,13 @@
 }
 
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; }
+  /* Take the <nav> wrapper out of the flex flow so the empty wrapper does
+     not consume horizontal space and shove the hamburger to the center. */
+  .site-header nav { display: contents; }
+  .nav-toggle {
+    display: flex;
+    margin-left: auto;
+  }
   .header-nav {
     display: none;
     position: absolute;
@@ -1196,16 +1202,18 @@
   z-index: 2;
 }
 
-/* --- Cyberpunk glitch on V-Tuning mark ---
-   Single-layer technique: animate the real <img> with drop-shadow chromatic offsets
-   + clip-path slicing. Reliable across browsers, no pseudo-element background-image
-   hacks. Visible glitch fires for ~600ms every 5s, then returns to steady state. */
+/* --- V-Tuning mark: interactive cyberpunk hover ---
+   Steady state is clean — no ambient animation. On hover, a single ~700ms
+   chromatic-aberration burst plays once, then settles into a held plasma
+   glow while the cursor remains over the mark. Returns to clean state on leave.
+   Tony Stark UI vibe — intentional, controllable, not a bug. */
 .platform-card-mark--glitch {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: var(--space-6);
+  cursor: pointer;
 }
 
 .platform-card-mark--glitch img {
@@ -1213,47 +1221,72 @@
   height: auto;
   position: relative;
   z-index: 2;
-  animation: vMarkGlitch 5s infinite steps(1);
   filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.55));
+  transition: filter 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter, transform;
 }
 
-@keyframes vMarkGlitch {
-  /* Steady state across the full cycle except for the burst window */
-  0%, 86%, 92%, 100% {
-    transform: translate(0, 0);
-    filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.55));
-    clip-path: inset(0);
-  }
-  /* Glitch burst — runs 87%→91% (~250ms of every 5s cycle) */
-  87% {
-    transform: translate(3px, -1px);
-    filter: drop-shadow(3px 0 0 #B388FF) drop-shadow(-3px 0 0 #7B2FBE) drop-shadow(0 0 18px rgba(179, 136, 255, 0.6));
-    clip-path: inset(0);
-  }
-  88% {
-    transform: translate(-4px, 2px);
-    filter: drop-shadow(-3px 0 0 #B388FF) drop-shadow(3px 0 0 #7B2FBE);
-    clip-path: inset(12% 0 55% 0);
-  }
-  89% {
-    transform: translate(3px, -2px);
-    filter: drop-shadow(2px 0 0 #B388FF) drop-shadow(-2px 0 0 #7B2FBE);
-    clip-path: inset(50% 0 22% 0);
-  }
-  90% {
-    transform: translate(-3px, 1px);
-    filter: drop-shadow(-2px 0 0 #B388FF) drop-shadow(2px 0 0 #7B2FBE);
-    clip-path: inset(72% 0 6% 0);
-  }
-  91% {
-    transform: translate(2px, 0);
-    filter: drop-shadow(0 0 14px #B388FF) drop-shadow(0 0 6px #B388FF);
-    clip-path: inset(0);
-  }
+/* Subtle scan-sweep highlight that travels across the mark on hover */
+.platform-card-mark--glitch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg,
+              transparent 35%,
+              rgba(179, 136, 255, 0.0) 45%,
+              rgba(179, 136, 255, 0.35) 50%,
+              rgba(179, 136, 255, 0.0) 55%,
+              transparent 65%);
+  background-size: 220% 100%;
+  background-position: 120% 0;
+  mix-blend-mode: screen;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 240ms ease;
+}
+
+.platform-card-mark--glitch:hover img,
+.platform-card-mark--glitch:focus-visible img {
+  animation: vMarkBurst 700ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  filter: drop-shadow(0 0 28px rgba(179, 136, 255, 0.75))
+          drop-shadow(0 0 8px rgba(83, 38, 142, 0.6));
+  transform: translateZ(0) scale(1.015);
+}
+
+.platform-card-mark--glitch:hover::after,
+.platform-card-mark--glitch:focus-visible::after {
+  opacity: 1;
+  animation: vMarkScan 900ms cubic-bezier(0.22, 1, 0.36, 1) 1;
+}
+
+@keyframes vMarkBurst {
+  /* Single chromatic-aberration burst, then settle into the steady hover glow */
+  0%   { filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.55)); transform: translate(0, 0) scale(1); }
+  15%  { filter: drop-shadow(2px 0 0 #B388FF) drop-shadow(-2px 0 0 #7B2FBE) drop-shadow(0 0 16px rgba(179, 136, 255, 0.6)); transform: translate(2px, -1px) scale(1.01); }
+  35%  { filter: drop-shadow(-3px 0 0 #B388FF) drop-shadow(3px 0 0 #7B2FBE) drop-shadow(0 0 18px rgba(179, 136, 255, 0.7)); transform: translate(-2px, 1px) scale(1.015); }
+  60%  { filter: drop-shadow(1px 0 0 #B388FF) drop-shadow(-1px 0 0 #7B2FBE) drop-shadow(0 0 22px rgba(179, 136, 255, 0.7)); transform: translate(1px, 0) scale(1.015); }
+  100% { filter: drop-shadow(0 0 28px rgba(179, 136, 255, 0.75)) drop-shadow(0 0 8px rgba(83, 38, 142, 0.6)); transform: translate(0, 0) scale(1.015); }
+}
+
+@keyframes vMarkScan {
+  0%   { background-position: 120% 0; }
+  100% { background-position: -120% 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .platform-card-mark--glitch img { animation: none; }
+  .platform-card-mark--glitch:hover img,
+  .platform-card-mark--glitch:focus-visible img {
+    animation: none;
+    transform: none;
+    filter: drop-shadow(0 0 28px rgba(179, 136, 255, 0.6));
+  }
+  .platform-card-mark--glitch:hover::after,
+  .platform-card-mark--glitch:focus-visible::after {
+    animation: none;
+    opacity: 0.5;
+  }
 }
 
 /* :: separator chip used throughout the platform card and meta */
@@ -1458,99 +1491,30 @@
 
 
 /* ========================================
-   TRUST STRIP — Social proof between Stats and Platform
-   ======================================== */
-
-.trust-strip {
-  position: relative;
-  padding: var(--space-10) 0;
-  background: linear-gradient(180deg, rgba(83, 38, 142, 0.04) 0%, transparent 100%);
-  border-top: 1px solid rgba(83, 38, 142, 0.18);
-  border-bottom: 1px solid rgba(83, 38, 142, 0.18);
-}
-
-.trust-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
-  align-items: center;
-}
-
-@media (max-width: 800px) {
-  .trust-row { grid-template-columns: 1fr; gap: var(--space-5); }
-}
-
-.trust-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-}
-
-.trust-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: rgba(83, 38, 142, 0.15);
-  border: 1px solid rgba(83, 38, 142, 0.4);
-  color: var(--color-primary-glow);
-  flex-shrink: 0;
-}
-
-.trust-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.trust-text strong {
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--color-text);
-  text-transform: uppercase;
-}
-
-.trust-text span {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-.trust-text .cyber-sep {
-  margin: 0 4px;
-  font-size: 0.9em;
-}
-
-
-/* ========================================
    FOUNDER PULL QUOTE
    ======================================== */
 
 .founder-quote {
   position: relative;
   margin: var(--space-6) 0 var(--space-8) 0;
-  padding: var(--space-6) var(--space-7);
+  padding: var(--space-7) var(--space-7) var(--space-6);
   background: linear-gradient(180deg, rgba(83, 38, 142, 0.10) 0%, rgba(83, 38, 142, 0.02) 100%);
   border-left: 3px solid var(--color-primary);
   border-radius: 0 8px 8px 0;
 }
 
+/* HUD-style label sits above the quote — no glyph collision with the body text */
 .founder-quote::before {
-  content: '\201C';
-  position: absolute;
-  top: -8px;
-  left: 14px;
+  content: ':: FOUNDER';
+  display: block;
   font-family: var(--font-display);
-  font-size: 4rem;
-  line-height: 1;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
   color: var(--color-primary-glow);
-  opacity: 0.45;
-  pointer-events: none;
+  opacity: 0.85;
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
 }
 
 .founder-quote p {

@@ -1327,6 +1327,22 @@
          text-shadow: none; }
 }
 
+/* Subtle variant — nav chrome only. Same chromatic vocabulary, but
+   movement is near-imperceptible (≤0.5px) so it reads as premium
+   polish rather than a button doing aerobics. Future-facing, not jittery. */
+@keyframes chromaticBurstTextSubtle {
+  0%   { transform: translate(0, 0);
+         text-shadow: none; }
+  20%  { transform: translate(-0.5px, 0);
+         text-shadow: 1.25px 0 #B388FF, -1.25px 0 #7B2FBE; }
+  45%  { transform: translate(0.5px, 0);
+         text-shadow: 2px 0 #B388FF, -2px 0 #7B2FBE; }
+  70%  { transform: translate(0, 0);
+         text-shadow: 1px 0 #B388FF, -1px 0 #7B2FBE; }
+  100% { transform: translate(0, 0);
+         text-shadow: none; }
+}
+
 /* Hero CTA buttons — chromatic on the label when hovered/focused. */
 .hero-cta {
   position: relative;
@@ -1366,7 +1382,7 @@
 }
 .header-nav a:hover,
 .header-nav a:focus-visible {
-  animation: chromaticBurstText 480ms cubic-bezier(0.22, 1, 0.36, 1) 1;
+  animation: chromaticBurstTextSubtle 540ms cubic-bezier(0.22, 1, 0.36, 1) 1;
 }
 
 /* Platform badge (Patent Pending :: USPTO) */

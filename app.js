@@ -124,4 +124,102 @@
 
     window.requestAnimationFrame(step);
   }
+
+  /* ---- Founder photo: Holographic-Pokémon-card easter egg ----
+     Mousemove tilts the portrait on a perspective stage and drives three
+     CSS-var-controlled overlays (iridescent sheen, radial glare, chromatic
+     edge). All visuals are CSS — JS only updates custom properties via rAF.
+     VEKTRON-locked palette (violet / plasma / ultraviolet, no rainbow). */
+  var founderPhoto = document.querySelector(".founder-photo");
+  if (founderPhoto) {
+    var prefersReducedQuery = (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)"));
+    var prefersReduced = !!(prefersReducedQuery && prefersReducedQuery.matches);
+
+    /* Inject overlay layers (kept out of HTML so the markup stays clean). */
+    var holoLayers = ["founder-photo-shine", "founder-photo-glare", "founder-photo-edge"];
+    for (var hl = 0; hl < holoLayers.length; hl++) {
+      var layer = document.createElement("span");
+      layer.className = holoLayers[hl];
+      layer.setAttribute("aria-hidden", "true");
+      founderPhoto.appendChild(layer);
+    }
+    founderPhoto.setAttribute("data-holo", "");
+
+    if (!prefersReduced) {
+      var MAX_TILT = 14;
+      var holoRaf = null;
+      var pendingTiltX = 0;
+      var pendingTiltY = 0;
+      var pendingGlareX = "50%";
+      var pendingGlareY = "50%";
+      var pendingShine = "50%";
+      var pendingIntensity = 0.6;
+
+      function applyHolo() {
+        founderPhoto.style.setProperty("--tilt-x", pendingTiltX.toFixed(2) + "deg");
+        founderPhoto.style.setProperty("--tilt-y", pendingTiltY.toFixed(2) + "deg");
+        founderPhoto.style.setProperty("--glare-x", pendingGlareX);
+        founderPhoto.style.setProperty("--glare-y", pendingGlareY);
+        founderPhoto.style.setProperty("--shine-pos", pendingShine);
+        founderPhoto.style.setProperty("--holo-intensity", pendingIntensity.toFixed(2));
+        holoRaf = null;
+      }
+
+      function updateHolo(clientX, clientY) {
+        var rect = founderPhoto.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) { return; }
+        var nx = (clientX - rect.left) / rect.width;
+        var ny = (clientY - rect.top) / rect.height;
+        nx = Math.max(0, Math.min(1, nx));
+        ny = Math.max(0, Math.min(1, ny));
+
+        /* rotateY follows horizontal (left tilts away on the left).
+           rotateX inverted so cursor-up tilts top toward viewer. */
+        pendingTiltX = (nx - 0.5) * 2 * MAX_TILT;
+        pendingTiltY = -(ny - 0.5) * 2 * MAX_TILT;
+        pendingGlareX = (nx * 100).toFixed(1) + "%";
+        pendingGlareY = (ny * 100).toFixed(1) + "%";
+        /* Sheen scans diagonally with the cursor. */
+        pendingShine = ((nx * 0.6 + (1 - ny) * 0.4) * 100).toFixed(1) + "%";
+        /* Intensity ramps as cursor moves off-center — the foil pops at the edges. */
+        var dist = Math.sqrt(Math.pow(nx - 0.5, 2) + Math.pow(ny - 0.5, 2));
+        pendingIntensity = 0.55 + Math.min(dist, 0.6) * 0.75;
+
+        if (!holoRaf) {
+          holoRaf = window.requestAnimationFrame(applyHolo);
+        }
+      }
+
+      function resetHolo() {
+        founderPhoto.classList.remove("is-active");
+        /* The 600ms transition on tilt + 500ms transitions on overlays
+           handle the smooth return; we just clear the values. */
+        founderPhoto.style.setProperty("--tilt-x", "0deg");
+        founderPhoto.style.setProperty("--tilt-y", "0deg");
+      }
+
+      founderPhoto.addEventListener("mouseenter", function () {
+        founderPhoto.classList.add("is-active");
+      });
+      founderPhoto.addEventListener("mousemove", function (e) {
+        updateHolo(e.clientX, e.clientY);
+      });
+      founderPhoto.addEventListener("mouseleave", resetHolo);
+
+      /* Touch support — tilt follows the finger; release returns to rest. */
+      founderPhoto.addEventListener("touchstart", function (e) {
+        founderPhoto.classList.add("is-active");
+        if (e.touches && e.touches[0]) {
+          updateHolo(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+      founderPhoto.addEventListener("touchmove", function (e) {
+        if (e.touches && e.touches[0]) {
+          updateHolo(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+      founderPhoto.addEventListener("touchend", resetHolo);
+      founderPhoto.addEventListener("touchcancel", resetHolo);
+    }
+  }
 })();

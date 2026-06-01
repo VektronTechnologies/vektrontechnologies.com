@@ -981,7 +981,7 @@
 }
 .footer-classified:hover {
   opacity: 1;
-  animation: chromaticBurst 560ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 780ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 .footer-attribution {
@@ -1302,75 +1302,73 @@
          transform: translate(0, 0) scale(1); }
 }
 
-/* --- Text chromatic burst (reusable across the site) --- */
-@keyframes chromaticBurst {
-  0%   { text-shadow: none; transform: translate(0, 0); }
-  12%  { text-shadow: 1.5px 0 #B388FF, -1.5px 0 #7B2FBE,
-                       0 0 14px rgba(179, 136, 255, 0.45);
-         transform: translate(1px, -0.5px); }
-  28%  { text-shadow: -2.5px 0 #B388FF, 2.5px 0 #7B2FBE,
-                       0 0 18px rgba(179, 136, 255, 0.6);
-         transform: translate(-1.5px, 0.5px); }
-  42%  { text-shadow: -2px 0 #B388FF, 2px 0 #7B2FBE,
-                       0 0 14px rgba(179, 136, 255, 0.5);
-         transform: translate(-1px, 0.5px); }
-  60%  { text-shadow: 1px 0 #B388FF, -1px 0 #7B2FBE,
-                       0 0 10px rgba(179, 136, 255, 0.35);
-         transform: translate(0.5px, 0); }
-  80%  { text-shadow: 0 0 10px rgba(83, 38, 142, 0.45);
-         transform: translate(0, 0); }
-  100% { text-shadow: none; transform: translate(0, 0); }
+/* --- Text chromatic burst (reusable across the site) ---
+   v2 doctrine: NO transform translate on text (translate at small font
+   sizes reads as jitter, not chromatic). Offsets stay ≤ 1.5px so the
+   chromatic moment is legible and intentional. The peak holds slightly
+   so it crystallizes as chromatic, not as motion blur. Tasteful, premium. */
+@keyframes chromaticBurstText {
+  0%   { text-shadow: none; }
+  20%  { text-shadow: 1px 0 #B388FF, -1px 0 #7B2FBE,
+                       0 0 12px rgba(179, 136, 255, 0.30); }
+  40%  { text-shadow: 1.4px 0 #B388FF, -1.4px 0 #7B2FBE,
+                       0 0 18px rgba(179, 136, 255, 0.50); }
+  55%  { text-shadow: 1.4px 0 #B388FF, -1.4px 0 #7B2FBE,
+                       0 0 16px rgba(179, 136, 255, 0.45); }
+  78%  { text-shadow: 0.5px 0 #B388FF, -0.5px 0 #7B2FBE,
+                       0 0 8px rgba(179, 136, 255, 0.25); }
+  100% { text-shadow: none; }
 }
 
 /* Hero CTA buttons — chromatic on the label when hovered/focused. */
 .hero-cta {
   position: relative;
   isolation: isolate;
-  will-change: transform;
+  will-change: text-shadow;
 }
 .hero-cta:hover,
 .hero-cta:focus-visible {
-  animation: chromaticBurst 620ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 820ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Section labels (:: ABOUT US, :: FLAGSHIP PLATFORM, etc.) */
 .section-label {
   display: inline-block;
   cursor: default;
-  will-change: text-shadow, transform;
+  will-change: text-shadow;
 }
 .section-label:hover {
-  animation: chromaticBurst 540ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 760ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Stat values — hover the number, it ignites. */
 .stat-value {
   display: inline-block;
   cursor: default;
-  will-change: text-shadow, transform;
+  will-change: text-shadow;
 }
 .stat-item:hover .stat-value,
 .stat-value:hover {
-  animation: chromaticBurst 600ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 800ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Header nav links */
 .header-nav a {
   display: inline-block;
-  will-change: text-shadow, transform;
+  will-change: text-shadow;
 }
 .header-nav a:hover,
 .header-nav a:focus-visible {
-  animation: chromaticBurst 500ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 720ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Platform badge (Patent Pending :: USPTO) */
 .platform-badge {
   display: inline-flex;
-  will-change: text-shadow, transform;
+  will-change: text-shadow;
 }
 .platform-badge:hover {
-  animation: chromaticBurst 580ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 780ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Founder pull-quote :: FOUNDER label burst */
@@ -1378,17 +1376,17 @@
   transition: text-shadow 320ms ease;
 }
 .founder-quote:hover::before {
-  animation: chromaticBurst 580ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 760ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Hero tagline em ("Precision at the Binary Level.") — ignite on hover */
 .hero-tagline em {
   display: inline-block;
   cursor: default;
-  will-change: text-shadow, transform;
+  will-change: text-shadow;
 }
 .hero-tagline em:hover {
-  animation: chromaticBurst 620ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+  animation: chromaticBurstText 820ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 /* Honor reduced-motion across all burst variants. */
@@ -1530,28 +1528,159 @@
   }
 }
 
+/* ============================================================
+   FOUNDER PHOTO — Holographic-card easter egg
+   ------------------------------------------------------------
+   Mousemove tilts the portrait on a perspective stage, while three
+   overlay layers (iridescent diagonal sheen, cursor-following radial
+   glare, chromatic violet edge) light up to evoke a holographic
+   trading card. Palette is locked to VEKTRON Violet / Plasma /
+   Ultraviolet — no rainbow, no off-brand spectra. Reduced-motion
+   users get a static, calm portrait.
+   ============================================================ */
 .founder-photo {
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--color-border);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glare-x: 50%;
+  --glare-y: 50%;
+  --shine-pos: 50%;
+  --holo-intensity: 0;
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.5),
     0 0 60px rgba(83, 38, 142, 0.18);
+  transition: box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.founder-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(15, 15, 18, 0.7) 100%);
-  pointer-events: none;
+.founder-photo[data-holo].is-active {
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(83, 38, 142, 0.35),
+    0 0 110px rgba(179, 136, 255, 0.22);
 }
 
 .founder-photo img {
   width: 100%;
   height: auto;
   display: block;
+  transform: rotateY(var(--tilt-x)) rotateX(var(--tilt-y));
+  transform-origin: center center;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  position: relative;
+  z-index: 1;
+}
+
+.founder-photo[data-holo].is-active img {
+  transition: transform 80ms linear;
+}
+
+/* Existing bottom darkening — keep above the photo for readability
+   but below the holo layers so it doesn't fight the sheen. */
+.founder-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(15, 15, 18, 0.7) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Iridescent diagonal sheen — VEKTRON-themed (violet → plasma → ultraviolet).
+   Position scans with the cursor. color-dodge over the portrait gives the
+   metallic "foil" pop without recoloring skin tones. */
+.founder-photo-shine {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent calc(var(--shine-pos) - 32%),
+    rgba(83, 38, 142, 0.22) calc(var(--shine-pos) - 16%),
+    rgba(179, 136, 255, 0.55) calc(var(--shine-pos) - 4%),
+    rgba(255, 255, 255, 0.38) var(--shine-pos),
+    rgba(123, 47, 190, 0.55) calc(var(--shine-pos) + 4%),
+    rgba(83, 38, 142, 0.22) calc(var(--shine-pos) + 16%),
+    transparent calc(var(--shine-pos) + 32%),
+    transparent 100%
+  );
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+
+.founder-photo[data-holo].is-active .founder-photo-shine {
+  opacity: var(--holo-intensity, 0.85);
+  transition: opacity 120ms linear;
+}
+
+/* Cursor-following radial glare — screen blend so it brightens highlights
+   without staining shadows. The radius (240px) is sized for the 520-wide
+   portrait — large enough to feel like a real specular hot spot. */
+.founder-photo-glare {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 240px at var(--glare-x) var(--glare-y),
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(179, 136, 255, 0.30) 28%,
+    transparent 62%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 4;
+}
+
+.founder-photo[data-holo].is-active .founder-photo-glare {
+  opacity: var(--holo-intensity, 0.75);
+  transition: opacity 100ms linear;
+}
+
+/* Chromatic Plasma edge — inset 1px line + soft inner glow that ignites
+   on hover. Lives above everything so it reads as the card's metallic rim. */
+.founder-photo-edge {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(179, 136, 255, 0),
+    inset 0 0 40px rgba(83, 38, 142, 0);
+  transition: box-shadow 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+.founder-photo[data-holo].is-active .founder-photo-edge {
+  box-shadow:
+    inset 0 0 0 1px rgba(179, 136, 255, 0.5),
+    inset 0 0 70px rgba(83, 38, 142, 0.4);
+}
+
+/* Reduced motion — calm portrait, no tilt, no sheen. Keep the soft
+   violet shadow that the card always had. */
+@media (prefers-reduced-motion: reduce) {
+  .founder-photo[data-holo] img { transform: none !important; transition: none; }
+  .founder-photo-shine,
+  .founder-photo-glare { display: none; }
+  .founder-photo[data-holo].is-active { box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(83, 38, 142, 0.18); }
+  .founder-photo[data-holo].is-active .founder-photo-edge { box-shadow:
+    inset 0 0 0 1px rgba(179, 136, 255, 0.25),
+    inset 0 0 30px rgba(83, 38, 142, 0.18); }
 }
 
 .founder-meta {

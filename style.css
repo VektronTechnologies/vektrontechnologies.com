@@ -219,10 +219,14 @@
 }
 
 .section-label::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--color-primary);
+  content: '::';
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  text-shadow: 0 0 12px rgba(83, 38, 142, 0.6);
+  transform: translateY(-1px);
 }
 
 .section-title {
@@ -1086,13 +1090,24 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  padding-left: var(--space-2);
 }
 
 .platform-features li {
   display: grid;
-  grid-template-columns: 14px 1fr;
+  grid-template-columns: 18px 1fr;
   gap: var(--space-4);
   align-items: start;
+}
+
+.feature-bullet {
+  width: 10px;
+  height: 10px;
+  margin: 6px 0 0 4px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(83, 38, 142, 0.7);
+  transform: rotate(45deg);
 }
 
 .platform-features strong {
@@ -1113,15 +1128,7 @@
   line-height: 1.65;
 }
 
-.feature-bullet {
-  width: 10px;
-  height: 10px;
-  margin-top: 6px;
-  background: var(--color-primary);
-  border-radius: 2px;
-  box-shadow: 0 0 12px rgba(83, 38, 142, 0.7);
-  transform: rotate(45deg);
-}
+/* feature-bullet defined above with .platform-features */
 
 .platform-meta {
   margin-top: var(--space-10);
@@ -1175,6 +1182,7 @@
 }
 
 .platform-card-mark {
+  position: relative;
   display: flex;
   justify-content: center;
   margin-bottom: var(--space-6);
@@ -1184,6 +1192,78 @@
 .platform-card-mark img {
   width: 120px;
   height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Cyberpunk glitch on V-Tuning mark --- */
+.platform-card-mark--glitch {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  margin: 0 auto var(--space-6);
+  filter: drop-shadow(0 0 24px rgba(83, 38, 142, 0.6));
+}
+
+.platform-card-mark--glitch img,
+.platform-card-mark--glitch::before,
+.platform-card-mark--glitch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/brand/v_mark.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.platform-card-mark--glitch img {
+  opacity: 0;
+}
+
+.platform-card-mark--glitch::before {
+  filter: drop-shadow(2px 0 0 #B388FF);
+  mix-blend-mode: screen;
+  animation: vGlitchA 4.2s infinite steps(1);
+}
+
+.platform-card-mark--glitch::after {
+  filter: drop-shadow(-2px 0 0 #7B2FBE);
+  mix-blend-mode: screen;
+  animation: vGlitchB 4.2s infinite steps(1);
+}
+
+@keyframes vGlitchA {
+  0%, 88%, 100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  90%           { transform: translate(2px, -1px); clip-path: inset(8% 0 62% 0); }
+  92%           { transform: translate(-3px, 1px); clip-path: inset(45% 0 18% 0); }
+  94%           { transform: translate(2px, 0); clip-path: inset(70% 0 8% 0); }
+  96%           { transform: translate(-1px, 1px); clip-path: inset(20% 0 50% 0); }
+}
+
+@keyframes vGlitchB {
+  0%, 88%, 100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  90%           { transform: translate(-2px, 1px); clip-path: inset(60% 0 22% 0); }
+  92%           { transform: translate(3px, -1px); clip-path: inset(15% 0 55% 0); }
+  94%           { transform: translate(-2px, 0); clip-path: inset(35% 0 35% 0); }
+  96%           { transform: translate(1px, -1px); clip-path: inset(78% 0 2% 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-card-mark--glitch::before,
+  .platform-card-mark--glitch::after { animation: none; }
+  .platform-card-mark--glitch img { opacity: 1; }
+}
+
+/* :: separator chip used throughout the platform card and meta */
+.cyber-sep {
+  color: var(--color-primary-glow);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0 var(--space-2);
+  opacity: 0.9;
 }
 
 .platform-card-name {
@@ -1194,6 +1274,11 @@
   text-transform: uppercase;
   color: var(--color-text);
   margin-bottom: var(--space-2);
+}
+
+.platform-card-name .cyber-sep {
+  font-size: 0.7em;
+  vertical-align: 0.15em;
 }
 
 .platform-card-tagline {

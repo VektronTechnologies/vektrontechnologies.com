@@ -401,6 +401,37 @@
   height: auto;
   margin: 0 auto var(--space-8);
   filter: drop-shadow(0 0 48px rgba(83, 38, 142, 0.5));
+  transform: translateZ(0);
+  will-change: filter, transform;
+  cursor: default;
+}
+
+/* Hero signature — burst on hover/focus, then recede to resting glow.
+   Uses the canonical vMarkBurst vocabulary but tuned for the larger
+   composite signature (smaller offsets relative to mark width).
+   Slow tail so the lockup feels weighty and "powered on", not jittery. */
+.hero-logo:hover,
+.hero-logo:focus-visible {
+  animation: heroLogoBurst 880ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+}
+
+@keyframes heroLogoBurst {
+  0%   { filter: drop-shadow(0 0 48px rgba(83, 38, 142, 0.5));
+         transform: translate(0, 0) scale(1); }
+  14%  { filter: drop-shadow(2px 0 0 #B388FF) drop-shadow(-2px 0 0 #7B2FBE)
+                 drop-shadow(0 0 36px rgba(179, 136, 255, 0.55));
+         transform: translate(1.5px, -0.5px) scale(1.005); }
+  30%  { filter: drop-shadow(-4px 0 0 #B388FF) drop-shadow(4px 0 0 #7B2FBE)
+                 drop-shadow(0 0 52px rgba(179, 136, 255, 0.75));
+         transform: translate(-2px, 1px) scale(1.012); }
+  46%  { filter: drop-shadow(-3px 0 0 #B388FF) drop-shadow(3px 0 0 #7B2FBE)
+                 drop-shadow(0 0 44px rgba(179, 136, 255, 0.65));
+         transform: translate(-1.5px, 0.5px) scale(1.01); }
+  65%  { filter: drop-shadow(1px 0 0 #B388FF) drop-shadow(-1px 0 0 #7B2FBE)
+                 drop-shadow(0 0 40px rgba(179, 136, 255, 0.45));
+         transform: translate(0.5px, 0) scale(1.005); }
+  100% { filter: drop-shadow(0 0 48px rgba(83, 38, 142, 0.5));
+         transform: translate(0, 0) scale(1); }
 }
 
 .hero-title {
@@ -936,13 +967,21 @@
   letter-spacing: 0.05em;
 }
 
+/* Footer brand tagline — Plasma Glow #B388FF (atmospheric accent, on-brand).
+   Was Command Amber, which is locked as CTA-only per brand standards. */
 .footer-classified {
   font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-cta);
-  opacity: 0.7;
+  color: var(--color-primary-glow);
+  opacity: 0.85;
+  transition: opacity 240ms ease, text-shadow 320ms ease;
+  cursor: default;
+}
+.footer-classified:hover {
+  opacity: 1;
+  animation: chromaticBurst 560ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
 .footer-attribution {
@@ -1334,15 +1373,37 @@
   animation: chromaticBurst 580ms cubic-bezier(0.16, 1, 0.3, 1) 1;
 }
 
+/* Founder pull-quote :: FOUNDER label burst */
+.founder-quote::before {
+  transition: text-shadow 320ms ease;
+}
+.founder-quote:hover::before {
+  animation: chromaticBurst 580ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+}
+
+/* Hero tagline em ("Precision at the Binary Level.") — ignite on hover */
+.hero-tagline em {
+  display: inline-block;
+  cursor: default;
+  will-change: text-shadow, transform;
+}
+.hero-tagline em:hover {
+  animation: chromaticBurst 620ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+}
+
 /* Honor reduced-motion across all burst variants. */
 @media (prefers-reduced-motion: reduce) {
   .platform-card-mark--glitch:hover img,
   .platform-card-mark--glitch:focus-visible img,
+  .hero-logo:hover, .hero-logo:focus-visible,
   .hero-cta:hover, .hero-cta:focus-visible,
+  .hero-tagline em:hover,
   .section-label:hover,
   .stat-item:hover .stat-value, .stat-value:hover,
   .header-nav a:hover, .header-nav a:focus-visible,
-  .platform-badge:hover {
+  .platform-badge:hover,
+  .footer-classified:hover,
+  .founder-quote:hover::before {
     animation: none;
   }
 }

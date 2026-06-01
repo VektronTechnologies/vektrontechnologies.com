@@ -12,7 +12,6 @@
     </clipPath>
   </defs>
   <rect x="0" y="0" width="1000" height="1000" rx="140" ry="140" fill="#0F0F12"/>
-  <rect x="0" y="0" width="1000" height="1000" fill="url(#plasmaHalo)" clip-path="url(#plateClip)"/>
   <g transform="translate(110,110) scale(0.78)">
     
   <title>VEKTRON V — Canonical Mark (v9 Silhouette Lock, Vektron Violet)</title>

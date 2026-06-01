@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.15; }
 p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
 ::selection {
-  background: rgba(123, 47, 190, 0.35);
+  background: rgba(83, 38, 142, 0.35);
   color: var(--color-text);
 }
 

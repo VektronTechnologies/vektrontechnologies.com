@@ -210,7 +210,11 @@
       });
       founderPhoto.addEventListener("mouseleave", resetHolo);
 
-      /* Touch support — tilt follows the finger; release returns to rest. */
+      /* Touch support — tilt follows the finger; release returns to rest.
+         touchmove is non-passive and calls preventDefault so the page
+         doesn't scroll while the user is dragging the holo card. CSS
+         touch-action: none on .founder-photo already tells the browser
+         to hand off gestures, this is the JS belt-and-suspenders. */
       founderPhoto.addEventListener("touchstart", function (e) {
         founderPhoto.classList.add("is-active");
         if (e.touches && e.touches[0]) {
@@ -219,9 +223,10 @@
       }, { passive: true });
       founderPhoto.addEventListener("touchmove", function (e) {
         if (e.touches && e.touches[0]) {
+          if (e.cancelable) { e.preventDefault(); }
           updateHolo(e.touches[0].clientX, e.touches[0].clientY);
         }
-      }, { passive: true });
+      }, { passive: false });
       founderPhoto.addEventListener("touchend", resetHolo);
       founderPhoto.addEventListener("touchcancel", resetHolo);
     }

@@ -1741,6 +1741,10 @@
   border: 1px solid var(--color-border);
   perspective: 1200px;
   transform-style: preserve-3d;
+  /* Browser hands off ALL touch gestures over the card so the holo
+     tilt isn't fighting the page scroll. Users scroll past the card
+     by starting their swipe above or below it. */
+  touch-action: none;
   --tilt-x: 0deg;
   --tilt-y: 0deg;
   --glare-x: 50%;
@@ -2021,23 +2025,32 @@
 /* Mobile: tighter padding, smaller quote glyphs, slightly smaller body
    so the 300-word quote doesn't feel like a wall of text on an S21. */
 @media (max-width: 640px) {
+  /* iPhone-16-Plus feedback: the quote panel felt cramped against the
+     section heading and the body paragraph below. Open up vertical air,
+     bump internal padding, and make the panel itself feel like a real
+     callout (stronger border + soft outer Plasma glow) instead of a
+     thin purple line. */
   .founder-quote {
-    padding: var(--space-8) var(--space-6) var(--space-7) var(--space-6);
-    margin: var(--space-5) 0 var(--space-7) 0;
+    padding: var(--space-9) var(--space-6) var(--space-8) var(--space-6);
+    margin: var(--space-9) 0 var(--space-10) 0;
+    border-color: rgba(83, 38, 142, 0.5);
+    box-shadow:
+      0 14px 40px rgba(0, 0, 0, 0.35),
+      0 0 50px rgba(83, 38, 142, 0.18);
   }
   .founder-quote::before,
   .founder-quote::after {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
   .founder-quote:hover::before,
   .founder-quote:hover::after {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
   .founder-quote p {
     font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: var(--space-4);
+    line-height: 1.6;
+    margin-bottom: var(--space-5);
   }
 }

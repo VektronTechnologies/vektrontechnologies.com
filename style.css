@@ -542,6 +542,22 @@
   50% { opacity: 0.8; transform: translateX(-50%) translateY(6px); }
 }
 
+/* Keep the trademark glued to the last word so "Level.™" never
+   wraps onto its own line on narrow viewports (Galaxy S21 et al). */
+.hero-tagline .nowrap-tm {
+  white-space: nowrap;
+}
+
+/* On phones the hero CTAs end up close to the bottom of the viewport
+   and the absolutely-positioned scroll cue starts to fight the buttons
+   for tap area. Hide it on small viewports — the cue is desktop-only
+   polish, not load-bearing UX. */
+@media (max-width: 768px), (max-height: 720px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
+
 /* Hero glow orb — subtle background */
 .hero::before {
   content: '';

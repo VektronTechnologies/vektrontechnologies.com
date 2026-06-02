@@ -1410,13 +1410,10 @@
   animation: chromaticBurstText 540ms cubic-bezier(0.22, 1, 0.36, 1) 1;
 }
 
-/* Founder pull-quote :: FOUNDER label burst */
-.founder-quote::before {
-  transition: text-shadow 320ms ease;
-}
-.founder-quote:hover::before {
-  animation: chromaticBurstText 520ms cubic-bezier(0.22, 1, 0.36, 1) 1;
-}
+/* Founder pull-quote: hover affordance is now the opacity ramp on the
+   giant decorative quote glyphs (see .founder-quote::before/::after).
+   The old chromatic burst targeted the small ":: FOUNDER" label, which
+   no longer exists — leaving this stub for documentation only. */
 
 /* Hero tagline em ("Precision at the Binary Level.") — ignite on hover */
 .hero-tagline em {
@@ -1439,9 +1436,13 @@
   .stat-item:hover .stat-value, .stat-value:hover,
   .header-nav a:hover, .header-nav a:focus-visible,
   .platform-badge:hover,
-  .footer-classified:hover,
-  .founder-quote:hover::before {
+  .footer-classified:hover {
     animation: none;
+  }
+  .founder-quote:hover::before,
+  .founder-quote:hover::after {
+    opacity: 0.32;
+    transition: none;
   }
 }
 
@@ -1784,39 +1785,77 @@
 .founder-quote {
   position: relative;
   margin: var(--space-6) 0 var(--space-8) 0;
-  padding: var(--space-7) var(--space-7) var(--space-6);
+  padding: var(--space-10) var(--space-9) var(--space-9) var(--space-9);
   background: linear-gradient(180deg, rgba(83, 38, 142, 0.10) 0%, rgba(83, 38, 142, 0.02) 100%);
-  border-left: 3px solid var(--color-primary);
-  border-radius: 0 8px 8px 0;
+  border: 1px solid rgba(83, 38, 142, 0.35);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-/* HUD-style label sits above the quote — no glyph collision with the body text */
+/* Big opening curly quote — sits top-left of the block, Plasma-tinted,
+   serif glyph (Georgia) because Nyctos doesn't carry a stylized typographic
+   quotation mark. Acts as decoration; aria-hidden via pointer-events. */
 .founder-quote::before {
-  content: ':: FOUNDER';
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--text-xs);
+  content: '\201C';
+  position: absolute;
+  top: -0.08em;
+  left: 0.18em;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: normal;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: 6.5rem;
+  line-height: 1;
   color: var(--color-primary-glow);
-  opacity: 0.85;
-  margin-bottom: var(--space-3);
-  text-transform: uppercase;
+  opacity: 0.32;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: opacity 320ms ease, text-shadow 320ms ease;
+}
+
+/* Big closing curly quote — bottom-right, mirrors the opening glyph. */
+.founder-quote::after {
+  content: '\201D';
+  position: absolute;
+  bottom: -0.55em;
+  right: 0.18em;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 6.5rem;
+  line-height: 1;
+  color: var(--color-primary-glow);
+  opacity: 0.32;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: opacity 320ms ease;
+}
+
+.founder-quote:hover::before,
+.founder-quote:hover::after {
+  opacity: 0.55;
 }
 
 .founder-quote p {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--color-text);
   font-style: italic;
   font-weight: 400;
-  margin: 0 0 var(--space-4) 0;
+  margin: 0 auto var(--space-5) auto;
+  max-width: 58ch;
   letter-spacing: 0.005em;
 }
 
 .founder-quote cite {
+  position: relative;
+  z-index: 1;
   display: block;
+  text-align: center;
   font-family: var(--font-display);
   font-size: var(--text-xs);
   font-weight: 600;
@@ -1824,4 +1863,28 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-primary-glow);
+}
+
+/* Mobile: tighter padding, smaller quote glyphs, slightly smaller body
+   so the 300-word quote doesn't feel like a wall of text on an S21. */
+@media (max-width: 640px) {
+  .founder-quote {
+    padding: var(--space-8) var(--space-6) var(--space-7) var(--space-6);
+    margin: var(--space-5) 0 var(--space-7) 0;
+  }
+  .founder-quote::before {
+    font-size: 4.25rem;
+    top: -0.02em;
+    left: 0.1em;
+  }
+  .founder-quote::after {
+    font-size: 4.25rem;
+    bottom: -0.38em;
+    right: 0.1em;
+  }
+  .founder-quote p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: var(--space-4);
+  }
 }

@@ -276,17 +276,78 @@
 }
 
 .header-logo {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-3);
   text-decoration: none;
   color: var(--color-text);
+  isolation: isolate;
 }
 
 .header-logo img {
   height: 44px;
   width: auto;
   display: block;
+  transition: filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: filter;
+}
+
+/* Smooth chromatic aberration on hover — no jitter, no rotation.
+   Two opposite-direction Plasma/Ultraviolet drop-shadows plus a soft
+   Plasma halo. Fades in/out via the filter transition. */
+.header-logo:hover img,
+.header-logo:focus-visible img {
+  filter:
+    drop-shadow(1.5px 0 0 rgba(179, 136, 255, 0.9))
+    drop-shadow(-1.5px 0 0 rgba(123, 47, 190, 0.9))
+    drop-shadow(0 0 14px rgba(179, 136, 255, 0.45));
+}
+
+/* Holographic sheen — a diagonal iridescent band that sweeps across the
+   signature once on hover. color-dodge blends against the dark header
+   so the band reads as foil light, not a paint stripe. */
+.header-logo::after {
+  content: '';
+  position: absolute;
+  inset: -4px -8px -4px -8px;
+  border-radius: 6px;
+  background-image: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgba(83, 38, 142, 0.25) 46%,
+    rgba(179, 136, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.35) 52%,
+    rgba(123, 47, 190, 0.55) 54%,
+    rgba(83, 38, 142, 0.25) 58%,
+    transparent 66%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 320ms ease;
+}
+
+.header-logo:hover::after,
+.header-logo:focus-visible::after {
+  opacity: 0.9;
+  animation: headerLogoSheen 1300ms cubic-bezier(0.22, 1, 0.36, 1) 1;
+}
+
+@keyframes headerLogoSheen {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -120% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-logo img,
+  .header-logo:hover img,
+  .header-logo:focus-visible img { filter: none; transition: none; }
+  .header-logo::after { display: none; }
 }
 
 .header-logo-text {

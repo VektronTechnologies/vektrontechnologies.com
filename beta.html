@@ -232,26 +232,19 @@
     </div>
   </main>
 
-  <!-- Supabase SDK + capture -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <!-- Waitlist capture: direct PostgREST insert, apikey-only header (no SDK, no Authorization bearer) -->
   <script>
   (function(){
     'use strict';
     // Publishable key — safe for client; protected by RLS (anon INSERT-only into waitlist).
     var SUPABASE_URL = 'https://cdhrnjeegdhlrazbmpox.supabase.co';
     var SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_TSfuTn3SHco1wb5oPSlZ4w_svUg0qk4';
+    var WAITLIST_ENDPOINT = SUPABASE_URL + '/rest/v1/waitlist';
 
     var form = document.getElementById('betaForm');
     var btn = document.getElementById('betaSubmit');
     var msg = document.getElementById('betaMsg');
     var success = document.getElementById('betaSuccess');
-
-    var client = null;
-    try {
-      if (window.supabase && window.supabase.createClient) {
-        client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, { auth: { persistSession: false } });
-      }
-    } catch (e) { console.error('[beta] client init failed', e); }
 
     function showMsg(text, kind){ msg.textContent = text; msg.className = 'beta-msg ' + kind; }
     function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
@@ -276,9 +269,23 @@
       };
 
       try {
-        if (!client) throw new Error('no-client');
-        var res = await client.from('waitlist').insert([row]);
-        if (res.error) throw res.error;
+        // POST directly to PostgREST with ONLY the apikey header. The Supabase JS SDK also
+        // sends Authorization: Bearer <publishable-key>, which this project rejects (401
+        // "permission denied for table waitlist"). apikey-only resolves the anon role correctly.
+        var res = await fetch(WAITLIST_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_PUBLISHABLE_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(row)
+        });
+        if (!res.ok) {
+          var detail = '';
+          try { detail = await res.text(); } catch (_) {}
+          throw new Error('HTTP ' + res.status + ' ' + detail);
+        }
         // success
         document.getElementById('bsName').textContent = name ? name.split(' ')[0] : 'tuner';
         form.style.display = 'none';

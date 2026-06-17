@@ -13,6 +13,46 @@
     function showMsg(text, kind){ msg.textContent = text; msg.className = 'beta-msg ' + kind; }
     function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
+    // ── Shared founder-seats counter ───────────────────────────────────────────
+    // Calls the SAME public.founder_seats_remaining() RPC that app.vektrontech.dev
+    // uses, so both sites show one identical "X of 100 left" number. The first-100
+    // cohort spans BOTH sites (they POST to the same public.waitlist table, deduped
+    // by the (lower(email), interest) unique index). apikey-only, like the INSERT
+    // path above (this project's anon role rejects the SDK's Authorization bearer).
+    // Fail-soft: on any error the static fallback text stays — never a wrong/blank number.
+    var RPC_ENDPOINT = SUPABASE_URL + '/rest/v1/rpc/founder_seats_remaining';
+    function renderSeats(remaining){
+      var n = parseInt(remaining, 10);
+      if (isNaN(n) || n < 0) { return; }
+      if (n > 100) { n = 100; }
+      var longEls = document.querySelectorAll('[data-founder-seats]');
+      for (var i = 0; i < longEls.length; i++){
+        if (n === 0) { longEls[i].textContent = 'All 100 founding seats are taken — join for the next opening.'; }
+        else if (n === 1) { longEls[i].textContent = 'Only 1 of 100 founding seats left.'; }
+        else { longEls[i].textContent = n + ' of 100 founding seats left.'; }
+      }
+      var kick = document.querySelectorAll('[data-founder-seats-kicker]');
+      for (var j = 0; j < kick.length; j++){
+        kick[j].innerHTML = (n === 0)
+          ? 'Founding Beta &nbsp;::&nbsp; List Full'
+          : 'Founding Beta &nbsp;::&nbsp; ' + n + ' of 100 Seats Left';
+      }
+    }
+    function refreshSeats(){
+      if (!window.fetch) { return; }
+      fetch(RPC_ENDPOINT, {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_PUBLISHABLE_KEY, 'Content-Type': 'application/json' },
+        body: '{}'
+      }).then(function(res){ if (!res.ok) { throw new Error('rpc ' + res.status); } return res.json(); })
+        .then(function(data){
+          var remaining = (typeof data === 'number') ? data : (Array.isArray(data) ? data[0] : data);
+          renderSeats(remaining);
+        })
+        .catch(function(err){ if (window.console && console.warn) { console.warn('[beta] seats counter unavailable:', err && err.message); } });
+    }
+    refreshSeats();
+
     form.addEventListener('submit', async function(e){
       e.preventDefault();
       var email = form.email.value.trim();
@@ -38,6 +78,7 @@
         form.style.display = 'none';
         success.classList.add('show');
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        refreshSeats(); // update the shared "X of 100 left" badge immediately
       }
       // Email fallback so a signup is never lost when the server is genuinely unreachable.
       function showEmailFallback(lead) {

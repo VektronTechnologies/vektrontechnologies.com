@@ -71,7 +71,9 @@
 .beta-form-wrap{max-width:560px;margin:3.4rem auto 0;padding:0 1.25rem}
 .beta-form-shell{background:rgba(255,255,255,.03);border:1px solid rgba(123,47,190,.35);border-radius:18px;padding:clamp(1.6rem,4vw,2.6rem);box-shadow:0 0 0 1px rgba(83,38,142,.2),0 24px 60px rgba(0,0,0,.5)}
 .beta-form-shell h2{font-family:'Nyctos',system-ui,sans-serif;font-weight:700;font-size:var(--text-xl);margin:0 0 .4rem;text-align:center}
-.beta-form-shell .beta-form-note{font-size:var(--text-sm);color:var(--color-text-muted);text-align:center;margin:0 0 1.8rem}
+.beta-form-shell .beta-form-note{font-size:var(--text-sm);color:var(--color-text-muted);text-align:center;margin:0 0 1rem}
+.beta-form-clarify{font-size:.82rem;line-height:1.55;color:var(--color-text-muted);text-align:left;margin:0 0 1.6rem;padding:.85rem 1rem;background:rgba(83,38,142,.12);border:1px solid rgba(123,47,190,.3);border-radius:12px}
+.beta-form-clarify strong{color:var(--color-text)}
 .beta-field{margin-bottom:1.1rem}
 .beta-field label{display:block;font-family:'Nyctos',system-ui,sans-serif;font-size:var(--text-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.5rem}
 .beta-field input,.beta-field select,.beta-field textarea{width:100%;background:rgba(15,15,18,.7);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:var(--color-text);font-family:inherit;font-size:1rem;padding:.85rem .95rem;transition:border-color .2s ease,box-shadow .2s ease}
@@ -191,6 +193,7 @@
         <form id="betaForm" novalidate>
           <h2>Reserve your beta seat</h2>
           <p class="beta-form-note"><span data-founder-seats>Founding seats are limited to 100.</span> Founding members get first access and a say in what we build next.</p>
+          <p class="beta-form-clarify">Reserving a seat is free and places no obligation on you. If you choose to become a founding member when checkout opens, it's a <strong>one-time purchase of product access plus founding perks</strong> — including a founder rate locked for 36 months. It is not a recurring subscription, a security, or an investment, and carries no promise of any financial return.</p>
 
           <div class="beta-field">
             <label for="bf-name">Name</label>
@@ -203,7 +206,7 @@
           <div class="beta-field">
             <label for="bf-interest">I'm a…</label>
             <select id="bf-interest" name="interest">
-              <option value="founding_subscriber">Founding subscriber</option>
+              <option value="founding_subscriber">Founding member</option>
               <option value="pro_tuner">Professional tuner</option>
               <option value="shop">Tuning shop / business</option>
               <option value="enthusiast">Serious enthusiast</option>

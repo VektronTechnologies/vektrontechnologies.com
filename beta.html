@@ -94,6 +94,61 @@
 .beta-success h2{font-family:'Nyctos',system-ui,sans-serif;font-size:var(--text-xl);margin:0 0 .6rem}
 .beta-success p{color:var(--color-text-muted);font-size:var(--text-base);line-height:1.6;max-width:42ch;margin:0 auto}
 
+/* ===== Plans / tier comparison ===== */
+#plans{scroll-margin-top:90px}
+.beta-plans{max-width:1180px;margin:3.6rem auto 0;padding:0 1.25rem}
+.beta-plans-head{text-align:center;max-width:640px;margin:0 auto 2.2rem}
+.beta-plans-head h2{font-family:'Nyctos',system-ui,sans-serif;font-weight:700;font-size:var(--text-xl);margin:0 0 .7rem}
+.beta-plans-head p{font-size:var(--text-base);color:var(--color-text-muted);line-height:1.6;margin:0}
+.beta-tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;align-items:stretch}
+.beta-tier{display:flex;flex-direction:column;background:rgba(255,255,255,.025);border:1px solid var(--color-border,rgba(255,255,255,.08));border-radius:16px;padding:1.6rem 1.35rem;transition:transform .25s ease,border-color .25s ease}
+.beta-tier:hover{transform:translateY(-3px);border-color:rgba(123,47,190,.5)}
+.beta-tier--featured{border-color:rgba(123,47,190,.55);background:linear-gradient(180deg,rgba(83,38,142,.16),rgba(83,38,142,.02));box-shadow:0 0 0 1px rgba(123,47,190,.4),0 18px 50px rgba(83,38,142,.22)}
+.beta-tier-badge{align-self:flex-start;font-family:'Nyctos',system-ui,sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#d9c6ff;background:rgba(123,47,190,.25);border:1px solid rgba(123,47,190,.5);border-radius:999px;padding:.28rem .7rem;margin-bottom:.9rem}
+.beta-tier-name{font-family:'Nyctos',system-ui,sans-serif;font-weight:700;font-size:var(--text-lg);margin:0 0 .25rem;color:var(--color-text)}
+.beta-tier-for{font-size:.82rem;color:var(--color-text-muted);line-height:1.45;margin:0 0 1rem;min-height:2.5em}
+.beta-tier-price{display:flex;align-items:baseline;gap:.35rem;margin:0 0 .15rem}
+.beta-tier-amt{font-family:'Nyctos',system-ui,sans-serif;font-weight:800;font-size:2.3rem;line-height:1;color:var(--color-text)}
+.beta-tier--featured .beta-tier-amt{color:#c9a9ff}
+.beta-tier-per{font-size:.82rem;color:var(--color-text-muted)}
+.beta-tier-sub{font-size:.74rem;color:var(--color-text-faint);margin:0 0 1.1rem}
+.beta-tier-feats{list-style:none;margin:0 0 1.4rem;padding:0;display:grid;gap:.6rem;flex:1 1 auto}
+.beta-tier-feats li{display:flex;gap:.55rem;align-items:flex-start;font-size:.84rem;color:var(--color-text-muted);line-height:1.45}
+.beta-tier-feats li svg{flex:0 0 auto;width:15px;height:15px;margin-top:2px;color:var(--color-circuit-violet)}
+.beta-tier-cta{display:block;text-align:center;text-decoration:none;border-radius:11px;font-family:'Nyctos',system-ui,sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.02em;padding:.8rem 1rem;transition:transform .15s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease}
+.beta-tier-cta--ghost{background:transparent;color:var(--color-text);border:1px solid rgba(123,47,190,.5)}
+.beta-tier-cta--ghost:hover{border-color:var(--color-circuit-violet);box-shadow:0 0 18px rgba(123,47,190,.35);transform:translateY(-1px)}
+.beta-tier-cta--solid{background:var(--color-primary,#53268E);color:#fff;border:1px solid var(--color-primary,#53268E)}
+.beta-tier-cta--solid:hover{background:#6a32b0;box-shadow:0 0 22px rgba(123,47,190,.5);transform:translateY(-1px)}
+/* Founding row */
+.beta-founding{margin-top:1.1rem;display:grid;grid-template-columns:1.3fr .9fr;gap:1.4rem;align-items:center;padding:1.7rem 1.7rem;border-radius:18px;background:linear-gradient(180deg,rgba(83,38,142,.20),rgba(83,38,142,.03));border:1px solid rgba(123,47,190,.45);box-shadow:0 0 0 1px rgba(123,47,190,.3)}
+.beta-founding-badge{display:inline-block;font-family:'Nyctos',system-ui,sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#1a1400;background:var(--color-cta,#FFD54F);border-radius:999px;padding:.3rem .8rem;margin-bottom:.7rem}
+.beta-founding h3{font-family:'Nyctos',system-ui,sans-serif;font-weight:700;font-size:var(--text-lg);margin:0 0 .5rem}
+.beta-founding p{font-size:.86rem;color:var(--color-text-muted);line-height:1.55;margin:0 0 .4rem}
+.beta-founding-fine{font-size:.72rem;color:var(--color-text-faint);line-height:1.5;margin:.6rem 0 0}
+.beta-founding-right{text-align:center}
+.beta-founding-amt{font-family:'Nyctos',system-ui,sans-serif;font-weight:800;font-size:2.8rem;line-height:1;color:#c9a9ff}
+.beta-founding-per{font-size:.85rem;color:var(--color-text-muted);display:block;margin:.2rem 0 1rem}
+/* Enterprise band */
+.beta-ent{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between;padding:1.5rem 1.7rem;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid var(--color-border,rgba(255,255,255,.08))}
+.beta-ent-text h3{font-family:'Nyctos',system-ui,sans-serif;font-weight:700;font-size:var(--text-base);margin:0 0 .35rem}
+.beta-ent-text p{font-size:.85rem;color:var(--color-text-muted);line-height:1.5;margin:0;max-width:62ch}
+.beta-ent-right{text-align:right;white-space:nowrap}
+.beta-ent-amt{font-family:'Nyctos',system-ui,sans-serif;font-size:1.15rem;color:var(--color-text)}
+.beta-ent-amt b{color:#c9a9ff;font-size:1.5rem}
+.beta-plans-note{text-align:center;font-size:.78rem;color:var(--color-text-faint);line-height:1.6;margin:1.6rem auto 0;max-width:760px}
+@media (max-width:880px){
+  .beta-tier-grid{grid-template-columns:repeat(2,1fr)}
+  .beta-tier-for{min-height:0}
+  .beta-founding{grid-template-columns:1fr;text-align:center}
+  .beta-founding-badge{margin-inline:auto}
+  .beta-ent{flex-direction:column;align-items:flex-start}
+  .beta-ent-right{text-align:left}
+}
+@media (max-width:560px){
+  .beta-tier-grid{grid-template-columns:1fr}
+}
+
 .beta-foot{text-align:center;padding:3.5rem 1.25rem 4rem;color:var(--color-text-faint);font-size:var(--text-sm)}
 .beta-foot a{color:var(--color-circuit-violet);text-decoration:none}
 .beta-back{display:inline-flex;align-items:center;gap:.4rem;color:var(--color-text-muted);font-size:var(--text-sm);text-decoration:none;margin-bottom:2.2rem}
@@ -111,6 +166,7 @@
       <nav>
         <ul class="header-nav" role="list">
           <li><a href="./index.html#platform">Platform</a></li>
+          <li><a href="#plans">Plans</a></li>
           <li><a href="./index.html#founder">Founder</a></li>
           <li><a href="./index.html#contact">Contact</a></li>
         </ul>
@@ -125,11 +181,11 @@
       <div class="container" style="position:relative">
         <span class="beta-kicker" data-founder-seats-kicker>Founding Beta &nbsp;::&nbsp; Limited Seats</span>
         <h1 class="beta-title">Be first inside the Calibration Cloud.</h1>
-        <p class="beta-lede">V-Tuning is software that lets a tuner safely reprogram a vehicle's computer — the whole job in one place, instead of six disconnected tools.</p>
+        <p class="beta-lede">V-Tuning is software that lets a tuner safely reprogram a vehicle's computer — the whole calibration workflow in one platform, instead of a stack of disconnected tools.</p>
         <p class="beta-sub">We're opening a small founding beta to professional tuners, shops, and serious enthusiasts. Reserve your seat below and you'll be among the first to get in when we turn the lights on.</p>
         <div class="beta-cta-row">
           <a class="hero-cta hero-cta--primary" href="#join">Reserve My Beta Seat</a>
-          <a class="hero-cta hero-cta--ghost" href="#what">What is V-Tuning?</a>
+          <a class="hero-cta hero-cta--ghost" href="#plans">See plans &amp; pricing</a>
         </div>
       </div>
     </section>
@@ -138,8 +194,8 @@
     <section id="what" style="padding:1rem 0 1rem">
       <div class="beta-plain">
         <h2>What V-Tuning actually does</h2>
-        <p>Every modern car runs on a small computer called an <strong>ECU</strong> that controls the engine. Tuners adjust that computer to unlock performance, fix drivability, and match modifications. Today they do it with a messy stack of separate, expensive, error-prone tools.</p>
-        <p><strong>V-Tuning brings the entire workflow into one safety-focused platform</strong> — read the file, understand it, change it, simulate it, and ship a clean tune — with guardrails that help stop the mistakes that cost people engines. We're the first to do it this way, and the core architecture is patent-pending with the USPTO.</p>
+        <p>Every modern vehicle is run by <strong>Electronic Control Units (ECUs)</strong> — the small computers that manage the engine and, increasingly, the transmission, battery, and other systems. Tuners calibrate these units to unlock performance, fix drivability, and match modifications. Today they do it with a messy stack of separate, expensive, error-prone tools.</p>
+        <p><strong>V-Tuning brings the entire calibration workflow into one safety-focused platform</strong> — read the file, understand it, change it, simulate it, and ship a clean tune — with guardrails that help stop the mistakes that cost people engines. At beta we're focused on engine calibration, but the architecture is built to be control-unit and propulsion agnostic (ICE and EV alike), so the same engine extends to other control units over time. The core architecture is patent-pending with the USPTO.</p>
       </div>
 
       <div class="beta-grid">
@@ -150,8 +206,8 @@
         </div>
         <div class="beta-card">
           <svg class="beta-card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          <h3>One Place, Not Six Tools</h3>
-          <p>Hex editing, map discovery, simulation, logging analysis, and reporting — consolidated into a single environment built by working tuners.</p>
+          <h3>One Platform, Not a Toolbox</h3>
+          <p>Hex editing, map discovery, simulation, logging analysis, and reporting — the whole calibration workflow in one environment built by working tuners, instead of a stack of disconnected single-purpose tools.</p>
         </div>
         <div class="beta-card">
           <svg class="beta-card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
@@ -161,8 +217,108 @@
         <div class="beta-card">
           <svg class="beta-card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
           <h3>Built for Shops</h3>
-          <p>Solo, pro, and shop-team tiers planned — designed to scale from one tuner at a bench to a multi-bay operation.</p>
+          <p>Solo, Pro, Shop/Team, and Enterprise tiers — designed to scale from one tuner at a bench to a multi-bay operation or an OEM calibration desk.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== PLANS / TIER COMPARISON ===== -->
+    <section id="plans" aria-labelledby="plans-heading">
+      <div class="beta-plans">
+        <div class="beta-plans-head">
+          <h2 id="plans-heading">Plans built to scale with you</h2>
+          <p>From a single tuner at a bench to a multi-bay shop or an OEM calibration desk. Monthly pricing below; annual billing saves about two months.</p>
+        </div>
+
+        <div class="beta-tier-grid">
+
+          <!-- SOLO -->
+          <div class="beta-tier">
+            <div class="beta-tier-name">Solo Tuner</div>
+            <p class="beta-tier-for">For the independent tuner getting started in the cloud.</p>
+            <div class="beta-tier-price"><span class="beta-tier-amt">$39</span><span class="beta-tier-per">/ mo</span></div>
+            <p class="beta-tier-sub">or $390 / yr</p>
+            <ul class="beta-tier-feats">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>3 BIN slots &middot; 10 tune profiles &middot; 1 seat</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Advanced simulation suite</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Multi-platform map library</li>
+            </ul>
+            <a class="beta-tier-cta beta-tier-cta--ghost" href="#join">Join the beta</a>
+          </div>
+
+          <!-- PRO (featured) -->
+          <div class="beta-tier beta-tier--featured">
+            <span class="beta-tier-badge">Most popular</span>
+            <div class="beta-tier-name">Pro Tuner</div>
+            <p class="beta-tier-for">The full Calibration Cloud for working tuners.</p>
+            <div class="beta-tier-price"><span class="beta-tier-amt">$89</span><span class="beta-tier-per">/ mo</span></div>
+            <p class="beta-tier-sub">or $890 / yr</p>
+            <ul class="beta-tier-feats">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>25 BIN slots &middot; unlimited profiles &middot; 3 seats</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Cloud sync &middot; mod-profile engine</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Multi-vehicle &middot; tuning report export</li>
+            </ul>
+            <a class="beta-tier-cta beta-tier-cta--solid" href="#join">Join the beta</a>
+          </div>
+
+          <!-- SHOP / TEAM -->
+          <div class="beta-tier">
+            <div class="beta-tier-name">Shop / Team</div>
+            <p class="beta-tier-for">For shops running a bench of tuners.</p>
+            <div class="beta-tier-price"><span class="beta-tier-amt">$249</span><span class="beta-tier-per">/ mo</span></div>
+            <p class="beta-tier-sub">or $2,490 / yr</p>
+            <ul class="beta-tier-feats">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Everything in Pro Tuner</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>10 seats &middot; 999 BIN slots</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Priority support &middot; API access</li>
+            </ul>
+            <a class="beta-tier-cta beta-tier-cta--ghost" href="#join">Join the beta</a>
+          </div>
+
+          <!-- ENTERPRISE -->
+          <div class="beta-tier">
+            <div class="beta-tier-name">Enterprise / OEM</div>
+            <p class="beta-tier-for">For OEM calibration desks and large operations.</p>
+            <div class="beta-tier-price"><span class="beta-tier-amt">$799</span><span class="beta-tier-per">/ mo</span></div>
+            <p class="beta-tier-sub">from $799/mo + metered &middot; or $7,990 / yr</p>
+            <ul class="beta-tier-feats">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Everything in Shop / Team</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Unlimited seats &middot; metered usage &middot; full API</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Dedicated onboarding</li>
+            </ul>
+            <a class="beta-tier-cta beta-tier-cta--ghost" href="mailto:info@vektrontechnologies.com?subject=Enterprise%2FOEM%20licensing">Talk to us</a>
+          </div>
+
+        </div>
+
+        <!-- FOUNDING MEMBER -->
+        <div class="beta-founding">
+          <div class="beta-founding-left">
+            <span class="beta-founding-badge">First 100 &middot; founding members</span>
+            <h3>Founding Member</h3>
+            <p>A one-time purchase of full top-tier access plus founding perks &mdash; your founder rate locked for 36 months, with private access ahead of public launch and priority on new-platform R&amp;D. Limited to the first 100.</p>
+            <p class="beta-founding-fine">One-time purchase of product access + perks when checkout opens. Reserving on the beta list is free and non-binding &mdash; no charge now. Not a subscription, security, or investment, and it carries no financial return. Founder rate is locked for 36 months from purchase.</p>
+          </div>
+          <div class="beta-founding-right">
+            <div class="beta-founding-amt">$4,999</div>
+            <span class="beta-founding-per">one-time &middot; locked 36 months</span>
+            <a class="beta-tier-cta beta-tier-cta--solid" href="#join">Reserve a founding seat</a>
+          </div>
+        </div>
+
+        <!-- OEM / FLEET BAND -->
+        <div class="beta-ent">
+          <div class="beta-ent-text">
+            <h3>Multi-seat OEM &amp; fleet licensing</h3>
+            <p>Running calibration across a factory desk, a dealer network, or a large fleet? We'll scope volume seats, metered usage, and dedicated onboarding with you directly.</p>
+          </div>
+          <div class="beta-ent-right">
+            <div class="beta-ent-amt">from <b>$799</b>/mo + metered</div>
+            <a class="beta-tier-cta beta-tier-cta--ghost" href="mailto:info@vektrontechnologies.com?subject=OEM%2Ffleet%20licensing" style="margin-top:.7rem;">Contact sales</a>
+          </div>
+        </div>
+
+        <p class="beta-plans-note">Beta is focused on engine calibration today; the platform is built to be control-unit and propulsion agnostic (ICE and EV alike) and extends to other control units over time. Prices are in USD and may change before public launch. Founding-member access is a one-time purchase, not a subscription, security, or investment.</p>
       </div>
     </section>
 

@@ -34,8 +34,38 @@
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png?v=21">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="./base.css?v=21">
-<link rel="stylesheet" href="./style.css?v=21">
+<link rel="stylesheet" href="./base.css?v=23">
+<link rel="stylesheet" href="./style.css?v=23">
+
+<!-- Structured data — Organization schema for richer search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "VEKTRON Technologies, LLC",
+  "alternateName": "VEKTRON",
+  "url": "https://vektrontechnologies.com/",
+  "logo": "https://vektrontechnologies.com/assets/brand/signature_vektron_violet_tech_white_1600.png",
+  "slogan": "Precision at the Binary Level.",
+  "description": "VEKTRON Technologies, LLC is an automotive technology company building the Calibration Cloud — patent-pending V-Tuning ECU calibration software, V-Power hardware engineering, and applied research for the professional performance automotive industry.",
+  "foundingDate": "2026",
+  "founders": [{
+    "@type": "Person",
+    "name": "Markell Winters-Edwards",
+    "jobTitle": "Founder & CEO",
+    "sameAs": "https://linkedin.com/in/markellwinters"
+  }],
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "NC",
+    "addressLocality": "Charlotte Metro",
+    "addressCountry": "US"
+  },
+  "email": "info@vektrontechnologies.com",
+  "knowsAbout": ["ECU calibration", "Automotive tuning", "Embedded systems engineering", "Bosch ECU architectures", "Performance automotive software"],
+  "sameAs": ["https://linkedin.com/in/markellwinters"]
+}
+</script>
 </head>
 <body>
 
@@ -54,13 +84,32 @@
         <ul class="header-nav" role="list">
           <li><a href="#about">About</a></li>
           <li><a href="#platform">Platform</a></li>
+          <li><a href="#technology">Technology</a></li>
           <li><a href="#divisions">Divisions</a></li>
           <li><a href="#founder">Founder</a></li>
+          <li><a href="./newsroom.html">Newsroom</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
+    <!-- Scroll progress meter — thin Plasma rail under the header -->
+    <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span></div>
   </header>
+
+  <!-- ========== CHAPTER INDEX RAIL (desktop) ==========
+       VEKTRON-native vertical waypoint rail. Diamond nodes (the brand's
+       45° feature-bullet motif), not numerals — deliberately NOT a
+       Perplexity-style numbered TOC. Tracks scroll via IntersectionObserver. -->
+  <nav class="chapter-rail" aria-label="Section navigation">
+    <ul role="list">
+      <li><a href="#about" data-rail="about"><span class="rail-node" aria-hidden="true"></span><span class="rail-label">About</span></a></li>
+      <li><a href="#platform" data-rail="platform"><span class="rail-node" aria-hidden="true"></span><span class="rail-label">Platform</span></a></li>
+      <li><a href="#technology" data-rail="technology"><span class="rail-node" aria-hidden="true"></span><span class="rail-label">Technology</span></a></li>
+      <li><a href="#divisions" data-rail="divisions"><span class="rail-node" aria-hidden="true"></span><span class="rail-label">Divisions</span></a></li>
+      <li><a href="#founder" data-rail="founder"><span class="rail-node" aria-hidden="true"></span><span class="rail-label">Founder</span></a></li>
+      <li><a href="#contact" data-rail="contact"><span class="rail-node" aria-hidden="true"></span><span class="rail-label">Contact</span></a></li>
+    </ul>
+  </nav>
 
 
   <!-- ========== HERO ========== -->
@@ -68,7 +117,8 @@
     <div class="grid-overlay"></div>
     <div class="hero-ambient"></div>
 
-    <div class="hero-content">
+    <div class="hero-content" data-hero-stage>
+      <h1 class="sr-only">VEKTRON Technologies — Precision at the Binary Level. The Calibration Cloud for professional ECU tuning.</h1>
       <img src="./assets/brand/signature_vektron_violet_tech_white.png?v=8" alt="VEKTRON Technologies" class="hero-logo" width="800" height="214">
       <p class="hero-tagline"><em>Precision at the Binary <span class="nowrap-tm">Level.<sup aria-label="trademark">™</sup></span></em></p>
       <p class="hero-sub">The Calibration Cloud — patent-pending Electronic Control Unit (ECU) calibration software, hardware engineering, and applied research for the professional performance automotive industry.</p>
@@ -164,6 +214,58 @@
           </div>
         </aside>
 
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== TECHNOLOGY / CAPABILITIES ========== -->
+  <section class="technology" id="technology" aria-labelledby="technology-heading">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label" aria-hidden="true">The Engineering</div>
+        <h2 id="technology-heading" class="section-title">Built From the Binary Up</h2>
+        <p class="section-desc">
+          VEKTRON is engineered at the level most tools never reach — the raw calibration binary itself. Where the industry stitches together a half-dozen disconnected utilities, we build one disciplined system around the data. These are the capabilities that define the platform; the methods behind them are protected intellectual property.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        <article class="tech-card reveal">
+          <div class="tech-card-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0H5a2 2 0 0 1-2-2v-4m6 6h10a2 2 0 0 0 2-2v-4"/><path d="M3 9h18M3 15h18"/></svg>
+          </div>
+          <h3 class="tech-card-title">Binary-Level Calibration</h3>
+          <p class="tech-card-desc">Direct work with the calibration data inside the ECU — not a thin wrapper over someone else's editor. Maps, scaling, and structure are surfaced as real, human-readable math.</p>
+        </article>
+
+        <article class="tech-card reveal">
+          <div class="tech-card-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 class="tech-card-title">Safety Systems by Design</h3>
+          <p class="tech-card-desc">Validation, guardrails, and integrity checks are part of the workflow itself — not bolted on afterward. The platform is built to catch the mistake before it ever reaches the vehicle.</p>
+        </article>
+
+        <article class="tech-card reveal">
+          <div class="tech-card-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="tech-card-title">Multi-Platform Architecture</h3>
+          <p class="tech-card-desc">One environment designed to span ECU families and tooling, with multi-language support from day one. Built for a global tuner community, not a single bench.</p>
+        </article>
+
+        <article class="tech-card reveal">
+          <div class="tech-card-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+          </div>
+          <h3 class="tech-card-title">The Calibration Cloud</h3>
+          <p class="tech-card-desc">A cloud-native backbone for the entire calibration workflow — project state, history, and collaboration in one place, engineered to scale from a solo tuner to a multi-bay shop.</p>
+        </article>
+      </div>
+
+      <div class="tech-statement reveal">
+        <p>Every layer is held to one standard: <strong>precision at the binary level.</strong> The underlying methods are protected, patent-pending intellectual property.</p>
       </div>
     </div>
   </section>
@@ -305,14 +407,49 @@
     <div class="footer-inner">
 
       <div class="footer-top">
-        <a class="footer-brand" href="#hero" aria-label="VEKTRON Technologies — Back to top">
-          <img src="./assets/brand/signature_transparent_white.png" alt="VEKTRON Technologies" width="200" height="56" loading="lazy">
-        </a>
-        <div class="footer-contact">
-          <p>VEKTRON Technologies, LLC</p>
-          <p>Charlotte Metro, NC &bull; Est. 2026</p>
-          <p><a href="mailto:info@vektrontechnologies.com">info@vektrontechnologies.com</a></p>
+        <div class="footer-brand-col">
+          <a class="footer-brand" href="#hero" aria-label="VEKTRON Technologies — Back to top">
+            <img src="./assets/brand/signature_transparent_white.png" alt="VEKTRON Technologies" width="200" height="56" loading="lazy">
+          </a>
+          <p class="footer-brand-blurb">The Calibration Cloud. Patent-pending ECU calibration software, hardware engineering, and applied research for the professional performance automotive industry.</p>
+          <p class="footer-brand-loc">Charlotte Metro, NC &bull; Est. 2026</p>
         </div>
+
+        <nav class="footer-nav" aria-label="Footer">
+          <div class="footer-col">
+            <h2 class="footer-col-title">Company</h2>
+            <ul role="list">
+              <li><a href="#about">About</a></li>
+              <li><a href="#founder">Founder</a></li>
+              <li><a href="#divisions">Divisions</a></li>
+              <li><a href="./newsroom.html">Newsroom</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h2 class="footer-col-title">Platform</h2>
+            <ul role="list">
+              <li><a href="#platform">V-Tuning</a></li>
+              <li><a href="#technology">Technology</a></li>
+              <li><a href="./beta.html">Founding Beta</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h2 class="footer-col-title">Resources</h2>
+            <ul role="list">
+              <li><a href="./brand.html">Brand &amp; Press</a></li>
+              <li><a href="./newsroom.html">Build-in-Public</a></li>
+              <li><a href="mailto:info@vektrontechnologies.com">Inquiries</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h2 class="footer-col-title">Connect</h2>
+            <ul role="list">
+              <li><a href="https://linkedin.com/in/markellwinters" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="mailto:info@vektrontechnologies.com">Email</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
 
       <div class="footer-divider"></div>
@@ -334,7 +471,7 @@
   </footer>
 
   <!-- Scripts (deferred) -->
-  <script src="./app.js?v=21" defer></script>
+  <script src="./app.js?v=23" defer></script>
 
 </body>
 </html>

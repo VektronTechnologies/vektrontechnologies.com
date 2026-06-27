@@ -231,4 +231,92 @@
       founderPhoto.addEventListener("touchcancel", resetHolo);
     }
   }
+
+  /* ---- Reduced-motion query (shared) ---- */
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  /* ---- Scroll progress meter ----
+     Drives the thin Plasma rail under the header via transform: scaleX.
+     rAF-throttled; passive scroll listener. */
+  var progressBar = document.querySelector(".scroll-progress-bar");
+  if (progressBar) {
+    var progressRaf = null;
+    function updateProgress() {
+      var doc = document.documentElement;
+      var scrollable = (doc.scrollHeight - doc.clientHeight);
+      var ratio = scrollable > 0 ? (window.scrollY / scrollable) : 0;
+      if (ratio < 0) { ratio = 0; } else if (ratio > 1) { ratio = 1; }
+      progressBar.style.transform = "scaleX(" + ratio.toFixed(4) + ")";
+      progressRaf = null;
+    }
+    window.addEventListener("scroll", function () {
+      if (!progressRaf) { progressRaf = window.requestAnimationFrame(updateProgress); }
+    }, { passive: true });
+    window.addEventListener("resize", function () {
+      if (!progressRaf) { progressRaf = window.requestAnimationFrame(updateProgress); }
+    }, { passive: true });
+    updateProgress();
+  }
+
+  /* ---- Chapter rail active-state tracking ----
+     IntersectionObserver watches each section; the most-visible section's
+     rail link gets .is-active. Diamond node fills + label appears. */
+  var railLinks = document.querySelectorAll(".chapter-rail a[data-rail]");
+  if (railLinks.length > 0 && "IntersectionObserver" in window) {
+    var railMap = {};
+    var sections = [];
+    for (var r = 0; r < railLinks.length; r++) {
+      var id = railLinks[r].getAttribute("data-rail");
+      var sec = document.getElementById(id);
+      if (sec) {
+        railMap[id] = railLinks[r];
+        sections.push(sec);
+      }
+    }
+    var visible = {};
+    function setActiveRail(id) {
+      for (var key in railMap) {
+        if (railMap.hasOwnProperty(key)) {
+          if (key === id) { railMap[key].classList.add("is-active"); }
+          else { railMap[key].classList.remove("is-active"); }
+        }
+      }
+    }
+    var railObserver = new IntersectionObserver(function (entries) {
+      for (var e = 0; e < entries.length; e++) {
+        visible[entries[e].target.id] = entries[e].isIntersecting ? entries[e].intersectionRatio : 0;
+      }
+      /* Pick the section with the greatest visible ratio */
+      var bestId = null, bestRatio = 0;
+      for (var vid in visible) {
+        if (visible.hasOwnProperty(vid) && visible[vid] > bestRatio) {
+          bestRatio = visible[vid];
+          bestId = vid;
+        }
+      }
+      if (bestId) { setActiveRail(bestId); }
+    }, { threshold: [0.15, 0.35, 0.55, 0.75], rootMargin: "-20% 0px -35% 0px" });
+    for (var s = 0; s < sections.length; s++) {
+      railObserver.observe(sections[s]);
+    }
+  }
+
+  /* ---- Staged hero reveal-on-load ----
+     Arms the stage (children offset), then releases on next frame so the
+     CSS cascade animates them in. Reduced-motion: leave visible, no arm. */
+  var heroStage = document.querySelector("[data-hero-stage]");
+  if (heroStage) {
+    if (reduceMotion) {
+      heroStage.classList.add("is-revealed");
+    } else {
+      heroStage.classList.add("stage-armed");
+      /* Double rAF ensures the armed (offset) state paints before reveal */
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          heroStage.classList.remove("stage-armed");
+          heroStage.classList.add("is-revealed");
+        });
+      });
+    }
+  }
 })();

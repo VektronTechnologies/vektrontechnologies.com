@@ -392,6 +392,33 @@
   width: 100%;
 }
 
+/* Sign In CTA in the header nav — points to the V-Tuning app (app.vektrontech.dev).
+   Themed Vektron Violet pill so it reads as the primary "get in" action without
+   competing with the amber conversion CTAs. One Supabase account spans both domains. */
+.header-nav .nav-signin {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-5);
+  box-shadow: 0 0 0 0 rgba(83, 38, 142, 0);
+  transition: background var(--transition-interactive),
+              box-shadow var(--transition-interactive),
+              border-color var(--transition-interactive),
+              color var(--transition-interactive);
+}
+.header-nav .nav-signin:hover,
+.header-nav .nav-signin:focus-visible {
+  color: var(--color-text);
+  background: #6a32b0;
+  border-color: var(--color-primary-glow);
+  box-shadow: 0 0 18px rgba(179, 136, 255, 0.55);
+}
+/* Suppress the underline-sweep used by the text links — the pill is its own affordance. */
+.header-nav .nav-signin::after { display: none; }
+
 /* Mobile nav toggle */
 .nav-toggle {
   display: none;
@@ -432,6 +459,12 @@
   }
   .header-nav.is-open { display: flex; }
   .header-nav a { font-size: var(--text-sm); }
+  /* In the stacked mobile menu, make Sign In a centered full-width CTA. */
+  .header-nav .nav-signin {
+    justify-content: center;
+    margin-top: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+  }
 }
 
 
